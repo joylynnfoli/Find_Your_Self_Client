@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
 type acceptedProps={
-    updateToken: (newToken:string)=> void;
+    sessionToken: string | null;
+    clickLogout: ()=> void
 }
 
-export class Auth extends Component<acceptedProps,
-{}>{
+export class Navbar extends Component<acceptedProps,{}>{
     constructor (props: acceptedProps){
         super(props);
         this.state = {}
@@ -14,7 +14,7 @@ export class Auth extends Component<acceptedProps,
     render() {
         return (
             <div>
-                <p>Hello from Auth!!</p>
+                <p>Hello from NavBar!!!</p>
             </div>
         )
     }
