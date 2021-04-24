@@ -25,23 +25,22 @@ export default class Register extends Component<acceptedProps, UserState> {
   handleSubmit = (e: any) => {
     if (this.state.email !== "" && this.state.password !== "") {
       e.preventDefault();
-      //fetch("http://localhost:3000/user/signup", {
-      fetch(`${APIURL}/user/signup`, {
+      console.log(this.state);
+      fetch("http://localhost:3000/user/signup", {
+        //fetch(`${APIURL}/user/signup`, {
         method: "POST",
         headers: new Headers({
           "Content-Type": "application/json",
         }),
         body: JSON.stringify({
-          user: {
-            email: this.state.email,
-            password: this.state.password,
-          },
+          email: this.state.email,
+          password: this.state.password,
         }),
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           this.props.updateToken(data.sessionToken);
+          console.log(data);
         });
     } else {
       alert("Please enter Email and Password");

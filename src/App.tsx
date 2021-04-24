@@ -52,7 +52,7 @@ export default class App extends Component<{}, sessionState> {
         clickLogout={this.clearToken}
       />
     ) : (
-      <Auth updateToken={this.updateToken} />
+      <Auth updateToken={this.updateToken} updateRole={this.updateRole} />
     );
   };
 
