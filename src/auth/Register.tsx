@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import APIURL from "../helpers/environment";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Button } from "@material-ui/core";
+import { FormControl, Input, InputLabel } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 type acceptedProps = {
   updateToken: (newToken: string) => void;
@@ -11,6 +13,7 @@ type acceptedProps = {
 type UserState = {
   email: string;
   password: string;
+  role: string;
 };
 
 export default class Register extends Component<acceptedProps, UserState> {
@@ -19,47 +22,47 @@ export default class Register extends Component<acceptedProps, UserState> {
     this.state = {
       email: "",
       password: "",
+      role: "",
     };
   }
 
   handleSubmit = (e: any) => {
-    if (this.state.email !== "" && this.state.password !== "") {
-      e.preventDefault();
-      console.log(this.state);
-      fetch("http://localhost:3000/user/signup", {
-        //fetch(`${APIURL}/user/signup`, {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          this.props.updateToken(data.sessionToken);
-          console.log(data);
-        });
-    } else {
-      alert("Please enter Email and Password");
-    }
+    e.preventDefault();
+    fetch("http://localhost:3000/user/signup", {
+      method: "POST",
+      body: JSON.stringify({
+        email: this.state.email,
+        password: this.state.password,
+        role: this.state.role,
+      }),
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.props.updateToken(data.sessionToken);
+        console.log(data);
+      });
   };
-  handleEmailChange = (event: any) => {
-    const email = event.target.value;
-    this.setState({ email: email });
-  };
-  handlePasswordChange = (event: any) => {
-    const password = event.target.value;
-    this.setState({ password: password });
-  };
+  // else {
+  //   alert("Please enter Email and Password");
+  // }
+
+  // handleEmailChange = (event: any) => {
+  //   const email = event.target.value;
+  //   this.setState({ email: email });
+  // };
+  // handlePasswordChange = (event: any) => {
+  //   const password = event.target.value;
+  //   this.setState({ password: password });
+  // };
 
   render() {
     return (
       <div>
         <h2>Sign Up</h2>
-        <ValidatorForm
+        <form
           style={{
             marginLeft: "auto",
             marginRight: "auto",
@@ -67,36 +70,41 @@ export default class Register extends Component<acceptedProps, UserState> {
             display: "block",
             backgroundColor: "#FFFFFF",
           }}
-          ref="form"
           onSubmit={this.handleSubmit}
-          onError={(errors) => console.log(errors)}
         >
-          <TextValidator
-            label="Email"
-            onChange={(e) => this.handleEmailChange(e)}
-            name="email"
-            value={this.state.email}
-            validators={["isEmail", "required"]}
-            errorMessages={["email is not valid", "this field is required"]}
-            autoComplete="off"
-          ></TextValidator>
-          <TextValidator
-            label="Password"
-            onChange={this.handlePasswordChange}
-            name="password"
-            value={this.state.password}
+          <TextField
+            onChange={(e) => this.setState({ email: e.target.value })}
+            id="email"
+            label="email"
+            inputProps={{
+              pattern: ".+@.+.com",
+            }}
+            title="Must be in standard email format. Ex: youremail@email.com"
+          />
+          <TextField
+            onChange={(e) => this.setState({ password: e.target.value })}
+            id="password"
             type="password"
-            validators={["minStringLength:6", "required"]}
-            errorMessages={[
-              "password should be more than 5 letters",
-              "this field is required",
-            ]}
-          ></TextValidator>
+            label="password"
+            inputProps={{
+              pattern: "[a-zA-Z0-9]+",
+              minLength: "5",
+              maxLength: "15",
+            }}
+            title="Password must contain one number, one capital letter, and be 5-15 characters in length."
+          />
           <br />
-          <Button variant="contained" onClick={this.handleSubmit}>
+          <TextField
+            onChange={(e) => this.setState({ role: e.target.value })}
+            id="role"
+            label="role"
+            required
+            // type="text"
+          />
+          <Button variant="contained" type="submit">
             Sign Up
           </Button>
-        </ValidatorForm>
+        </form>
       </div>
     );
   }

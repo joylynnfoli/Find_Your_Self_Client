@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Site/Home";
 import Navbar from "./components/Site/Navbar";
@@ -47,10 +48,15 @@ export default class App extends Component<{}, sessionState> {
 
   protectedViews = () => {
     return this.state.sessionToken === localStorage.getItem("sessionToken") ? (
-      <Navbar
-        sessionToken={this.state.sessionToken}
-        clickLogout={this.clearToken}
-      />
+      <>
+        <Router>
+          <Navbar
+            sessionToken={this.state.sessionToken}
+            clickLogout={this.clearToken}
+          />
+        </Router>
+        <Home sessionToken={this.state.sessionToken} />
+      </>
     ) : (
       <Auth updateToken={this.updateToken} updateRole={this.updateRole} />
     );
