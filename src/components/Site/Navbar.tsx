@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import { Button, Toolbar } from "@material-ui/core";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { Button, Toolbar, MenuItem } from "@material-ui/core";
 import Home from "./Home";
+// import Favorites from "./Favorites";
+import Search from "./Search";
+import Grid from "@material-ui/core/Grid";
+import MenuList from "@material-ui/core/MenuList";
 
 type acceptedProps = {
   sessionToken: string | null;
@@ -24,21 +28,45 @@ export default class Navbar extends Component<acceptedProps, {}> {
           {/* {this.props.user} */}
         </h3>
 
-        <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-          <Button size="large" disabled variant="contained" color="secondary">
+        {/* <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
+          <Button size="large" variant="contained" color="secondary">
             <Link style={{ color: "#0b2966" }} to="/">
               Home
             </Link>
           </Button>
-          <Button size="large" disabled variant="contained" color="secondary">
-            <Link style={{ color: "#0b4566" }} to="/Favorites">
+          <Button size="large" variant="contained" color="secondary">
+            <Link style={{ color: "#0b9877" }} to="/Favorites">
               Favorites
             </Link>
           </Button>
-        </Toolbar>
-        <Route exact path="/">
-          <Home sessionToken={this.props.sessionToken} />
-        </Route>
+          <Button size="large" variant="contained" color="secondary">
+            <Link style={{ color: "#0b9873" }} to="/Search">
+              Search
+            </Link>
+          </Button>
+        </Toolbar> */}
+        <MenuList>
+          <MenuItem component={Link} to="/">
+            Home
+          </MenuItem>
+          <MenuItem component={Link} to="/Favorites">
+            Favorites
+          </MenuItem>
+          <MenuItem component={Link} to="/Search">
+            Search
+          </MenuItem>
+        </MenuList>
+        <Switch>
+          <Route exact path="/">
+            <Home sessionToken={this.props.sessionToken} />
+          </Route>
+          <Route exact path="/Favorites">
+            {/* <Favorites sessionToken={this.props.sessionToken} /> */}
+          </Route>
+          <Route exact path="/Search">
+            <Search sessionToken={this.props.sessionToken} />
+          </Route>
+        </Switch>
       </div>
     );
   }

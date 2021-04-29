@@ -3,6 +3,7 @@ import APIURL from "../helpers/environment";
 // import "./styles.css";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { Grid, Paper } from "@material-ui/core";
 
 type acceptedProps = {
   updateToken: any;
@@ -71,11 +72,26 @@ export default class Login extends Component<acceptedProps, userState> {
   //   handleChange = (e) => {
   //     this.setState({ [e.currentTarget.id]: e.currentTarget.value });
   //   };
-
+  // paperStyle = { padding: 20, height: "70vh", width: 280 };
   render() {
     return (
       <div className="App">
-        <form className="form" onSubmit={this.handleSubmit}>
+        <h2 style={{ textAlign: "center" }}>Login Here!</h2>
+        <form
+          className="form"
+          style={{
+            alignContent: "center",
+            marginLeft: "auto",
+            marginRight: "auto",
+            // position: "absolute",
+            display: "block",
+            width: "30%",
+            // left: "50%",
+            top: "50%",
+            // transform: "translate(100%, 150%)",
+          }}
+          onSubmit={this.handleSubmit}
+        >
           <TextField
             label="Email"
             id="email"

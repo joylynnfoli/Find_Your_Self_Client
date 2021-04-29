@@ -4,6 +4,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Button } from "@material-ui/core";
 import { FormControl, Input, InputLabel } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import { Grid, Paper } from "@material-ui/core";
 
 type acceptedProps = {
   updateToken: (newToken: string) => void;
@@ -57,18 +58,18 @@ export default class Register extends Component<acceptedProps, UserState> {
   //   const password = event.target.value;
   //   this.setState({ password: password });
   // };
-
+  paperStyle = { padding: 20, height: "70vh", width: 280 };
   render() {
     return (
       <div>
-        <h2>Sign Up</h2>
+        <h2 style={{ textAlign: "center" }}>Register Here!</h2>
         <form
           style={{
             marginLeft: "auto",
             marginRight: "auto",
-            width: "30%",
+            width: "45%",
             display: "block",
-            backgroundColor: "#FFFFFF",
+            // backgroundColor: "#FFFFFF",
           }}
           onSubmit={this.handleSubmit}
         >

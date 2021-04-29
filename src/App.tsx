@@ -20,8 +20,11 @@ export default class App extends Component<{}, sessionState> {
       email: "",
     };
   }
-  componentDidUpdate() {
-    console.log("updated");
+
+  componentDidMount() {
+    if (localStorage.getItem("sessionToken")) {
+      this.setState({ sessionToken: localStorage.getItem("sessionToken") });
+    }
   }
 
   updateToken = (newToken: string) => {
@@ -55,7 +58,6 @@ export default class App extends Component<{}, sessionState> {
             clickLogout={this.clearToken}
           />
         </Router>
-        <Home sessionToken={this.state.sessionToken} />
       </>
     ) : (
       <Auth updateToken={this.updateToken} updateRole={this.updateRole} />
