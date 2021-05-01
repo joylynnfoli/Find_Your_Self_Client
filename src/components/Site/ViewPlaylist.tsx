@@ -16,7 +16,7 @@ export default class ViewPlaylist extends Component<ViewPlaylistProp, {}> {
         <h1>Test</h1>
         {this.props.meditationPlayLists.map((meditation, index) => {
           console.log(meditation);
-          return <p key={index}>{meditation.snippet.description}</p>;
+          return <p key={index}>{meditation.snippet.title}</p>;
         })}
       </div>
     );

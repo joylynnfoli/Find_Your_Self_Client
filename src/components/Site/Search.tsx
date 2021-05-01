@@ -1,19 +1,8 @@
 import React, { Component } from "react";
-import { TextField } from "@material-ui/core";
-import {
-  makeStyles,
-  ThemeProvider,
-  createMuiTheme,
-} from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import SearchDisplayCards from "./SearchDisplayCards";
 
 const styles = {
   card: {
@@ -48,28 +37,40 @@ type searchProps = {
   sessionToken: string | null;
 };
 
-export default class Search extends Component<searchProps, {}> {
+type acceptedCategories = {
+  categories: string | null;
+  results: [];
+};
+
+export default class Search extends Component<searchProps, acceptedCategories> {
   constructor(props: searchProps) {
     super(props);
-    this.state = {};
+    this.state = {
+      categories: "",
+      results: [],
+    };
     console.log(props);
   }
 
   componentDidMount() {
-    this.fetchPlaylist();
+    // this.fetchPlaylist();
   }
   fetchPlaylist = () => {
     console.log("fetch ran");
-    fetch(
-      `https://www.googleapis.com/youtube/v3/playlists?part=snippet&id=PLvcW4S4nxekJdH_D-BWj69KtifYy4vcSo&key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI`
-    )
+    fetch(`${this.state.categories}`)
       .then((res) => res.json())
       .then((json) => {
         json.results;
+        this.setState({ results: json.items });
         console.log(json);
       });
   };
 
+  handleChangeCategories = (event: any) => {
+    this.setState({ categories: event.target.value });
+    console.log(this.state.categories);
+    this.fetchPlaylist();
+  };
   // addPlaylist = (id, default) => {
   //   console.log({ id, default });
   //   fetch(`${APIURL}/favorites/add`, {
@@ -87,31 +88,47 @@ export default class Search extends Component<searchProps, {}> {
   render() {
     return (
       <div>
-        <TextField
-          variant="outlined"
-          color="secondary"
-          value="Search"
-          inputProps={{ min: 0, style: { textAlign: "center" } }}
-        />
-        {/* <Card
-          style={{
-            alignContent: "center",
-            alignItems: "center",
+        <Select onChange={this.handleChangeCategories}>
+          <MenuItem value="">None</MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekLPw4xDkC2eL5VxCD1yWZxb&maxResults=50`}
+          >
+            Trauma
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekL3-UvsPAzE77TcxppiofCX&maxResults=50`}
+          >
+            Parenting
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekL3ccAWfloG7LbZDQlzJumV&maxResults=50`}
+          >
+            Complete Sessions
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLOf1Ju04a3JTwbdK2VbmRyie7AI9tpm78&maxResults=50`}
+          >
+            IFS Training for Therapists
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekJFIo5c3JTfwCuKSiEUFroM&maxResults=50`}
+          >
+            Richard Schwartz Podcasts
+          </MenuItem>
+        </Select>
+        <Button
+          variant="contained"
+          color="red"
+          onClick={() => {
+            this.fetchPlaylist();
           }}
         >
-          <CardActionArea>
-            <CardMedia title="Contemplative Reptile" />
-            <CardContent>
-              <Typography>Welcome to the KB</Typography>
-              <Typography></Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions>
-        </Card> */}
+          Show Results
+        </Button>
+        <SearchDisplayCards
+          sessionToken={this.props.sessionToken}
+          results={this.state.results}
+        />
       </div>
     );
   }

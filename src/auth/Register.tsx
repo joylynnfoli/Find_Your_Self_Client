@@ -5,6 +5,8 @@ import { Button } from "@material-ui/core";
 import { FormControl, Input, InputLabel } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import { Grid, Paper } from "@material-ui/core";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
 
 type acceptedProps = {
   updateToken: (newToken: string) => void;
@@ -26,7 +28,9 @@ export default class Register extends Component<acceptedProps, UserState> {
       role: "",
     };
   }
-
+  handleChangeRole = (e: any) => {
+    this.setState({ role: e.target.value });
+  };
   handleSubmit = (e: any) => {
     e.preventDefault();
     fetch("http://localhost:3000/user/signup", {
@@ -62,7 +66,9 @@ export default class Register extends Component<acceptedProps, UserState> {
   render() {
     return (
       <div>
-        <h2 style={{ textAlign: "center" }}>Register Here!</h2>
+        <h2 style={{ textAlign: "center", marginTop: "15%" }}>
+          Register Here!
+        </h2>
         <form
           style={{
             marginLeft: "auto",
@@ -95,13 +101,15 @@ export default class Register extends Component<acceptedProps, UserState> {
             title="Password must contain one number, one capital letter, and be 5-15 characters in length."
           />
           <br />
-          <TextField
-            onChange={(e) => this.setState({ role: e.target.value })}
-            id="role"
-            label="role"
+          <Select onChange={this.handleChangeRole}>
+            {/* id="role"
+            label="Role"
             required
-            // type="text"
-          />
+            title="Please enter "
+            // type="text" */}
+            <MenuItem value="Therapist">Therapist/Practitioner</MenuItem>
+            <MenuItem value="Client">Client</MenuItem>
+          </Select>
           <Button variant="contained" type="submit">
             Sign Up
           </Button>

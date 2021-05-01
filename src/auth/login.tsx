@@ -76,17 +76,18 @@ export default class Login extends Component<acceptedProps, userState> {
   render() {
     return (
       <div className="App">
-        <h2 style={{ textAlign: "center" }}>Login Here!</h2>
+        <h2 style={{ textAlign: "center", marginTop: "15%" }}>Login Here!</h2>
         <form
           className="form"
           style={{
             alignContent: "center",
+
             marginLeft: "auto",
             marginRight: "auto",
             // position: "absolute",
             display: "block",
             width: "30%",
-            // left: "50%",
+            left: "50%",
             top: "50%",
             // transform: "translate(100%, 150%)",
           }}

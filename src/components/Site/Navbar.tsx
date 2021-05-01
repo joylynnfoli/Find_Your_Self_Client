@@ -6,6 +6,7 @@ import Home from "./Home";
 import Search from "./Search";
 import Grid from "@material-ui/core/Grid";
 import MenuList from "@material-ui/core/MenuList";
+import Topics from "../topics/Topics";
 
 type acceptedProps = {
   sessionToken: string | null;
@@ -52,6 +53,9 @@ export default class Navbar extends Component<acceptedProps, {}> {
           <MenuItem component={Link} to="/Favorites">
             Favorites
           </MenuItem>
+          <MenuItem component={Link} to="/Topics">
+            Topics
+          </MenuItem>
           <MenuItem component={Link} to="/Search">
             Search
           </MenuItem>
@@ -65,6 +69,9 @@ export default class Navbar extends Component<acceptedProps, {}> {
           </Route>
           <Route exact path="/Search">
             <Search sessionToken={this.props.sessionToken} />
+          </Route>
+          <Route exact path="/Topics">
+            <Topics sessionToken={this.props.sessionToken} />
           </Route>
         </Switch>
       </div>
