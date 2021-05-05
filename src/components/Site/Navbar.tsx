@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, Toolbar, MenuItem } from "@material-ui/core";
 import Home from "./Home";
 // import Favorites from "./Favorites";
-import Search from "./Search";
+import Search from "./Search/Search";
 import Grid from "@material-ui/core/Grid";
 import MenuList from "@material-ui/core/MenuList";
 import Topics from "../topics/Topics";
@@ -23,7 +23,7 @@ export default class Navbar extends Component<acceptedProps, {}> {
   render() {
     return (
       <div>
-        <h3>User Navbar!</h3>
+        {/* <h3>User Navbar!</h3> */}
         <h3>
           Welcome User
           {/* {this.props.user} */}

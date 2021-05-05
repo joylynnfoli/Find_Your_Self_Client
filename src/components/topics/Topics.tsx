@@ -9,7 +9,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 type acceptedProps = {
-  sessionToken: string | null;
+  sessionToken: any | null 
+    // Authorizaton: string | null;
 };
 
 type acceptedState = {
@@ -31,8 +32,14 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
 
   handleSubmit = (e: any) => {
     e.preventDefault();
-    fetch(`${APIURL}topics/add/`, {
+    console.log(this.props.sessionToken)
+    fetch(`${APIURL}/topics/add`, {
       method: "POST",
+      headers: new Headers({
+        Authorization: this.props.sessionToken, 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }),
       body: JSON.stringify({
         topics: {
           playlistId: this.state.playlistId,
@@ -40,17 +47,46 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
           note: this.state.note,
         },
       }),
-      headers: new Headers({
-        "Content type": "application/json",
-      }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
       });
   };
+  
+//   fetchTopics = (e: any) => { 
+//     e.preventDefault();
+//   // console.log(this.props.sessionToken)
+// fetch(`${APIURL}/topics/mine`, {
+//   method: "GET",
+//   headers: new Headers({
+//     Authorization: this.props.sessionToken,
+//     'Content-Type': 'application/json',
+//     'Accept': 'application/json'
+// })
+// .then((res) => res.json())
+//       .then((data) => {
+//         console.log(data);
+//       });
+//   };
 
-  render() {
+fetchTopics = (e: any) => {
+  e.preventDefault();
+  console.log(this.props.sessionToken)
+  fetch(`${APIURL}/topics/mine`, {
+    method: "GET",
+    headers: new Headers ({
+      Authorization: this.props.sessionToken,
+      'Content-Type': 'application/json'
+    })
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+  })
+}
+
+render() {
     return (
       <div>
         <h2 style={{ textAlign: "center", marginTop: "15%" }}>Add Topic</h2>
@@ -86,6 +122,9 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
           <br />
           <Button variant="contained" type="submit">
             Add
+          </Button>
+          <Button variant="contained" onClick={()=>this.fetchTopics}>
+            Get
           </Button>
         </form>
       </div>
