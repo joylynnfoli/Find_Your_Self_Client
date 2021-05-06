@@ -29,7 +29,6 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
     };
     console.log(props);
   }
-
   handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(this.props.sessionToken)
@@ -50,6 +49,7 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
     })
       .then((res) => res.json())
       .then((data) => {
+        this.fetchTopics(e)
         console.log(data);
       });
   };

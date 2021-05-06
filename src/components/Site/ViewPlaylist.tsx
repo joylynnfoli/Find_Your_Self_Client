@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 
-type ViewPlaylistProp = {
+type acceptedProp = {
   sessionToken: string | null;
-  meditationPlayLists: [];
+  meditations: [];
 };
 
-export default class ViewPlaylist extends Component<ViewPlaylistProp, {}> {
-  constructor(props: ViewPlaylistProp) {
+export default class acceptedProps extends Component<acceptedProp, {}> {
+  constructor(props: acceptedProp) {
     super(props);
     this.state = {};
   }
   render() {
     return (
       <div>
-        <h1>Test</h1>
-        {this.props.meditationPlayLists.map((meditation, index) => {
+        <h1>Quick Meditations</h1>
+        {this.props.meditations.map((meditation, index) => {
           console.log(meditation);
           return <p key={index}>{meditation.snippet.title}</p>;
         })}

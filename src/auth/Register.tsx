@@ -62,10 +62,10 @@ export default class Register extends Component<acceptedProps, UserState> {
   //   const password = event.target.value;
   //   this.setState({ password: password });
   // };
-  paperStyle = { padding: 20, height: "70vh", width: 280 };
+  // paperStyle = { padding: 20, height: "70vh", width: 280 };
   render() {
     return (
-      <div>
+      <div className="Register">
         <h2 style={{ textAlign: "center", marginTop: "15%" }}>
           Register Here!
         </h2>
@@ -73,7 +73,7 @@ export default class Register extends Component<acceptedProps, UserState> {
           style={{
             marginLeft: "auto",
             marginRight: "auto",
-            width: "45%",
+            width: "300px",
             display: "block",
             // backgroundColor: "#FFFFFF",
           }}

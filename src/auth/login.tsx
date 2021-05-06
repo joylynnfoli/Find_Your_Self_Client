@@ -75,7 +75,7 @@ export default class Login extends Component<acceptedProps, userState> {
   // paperStyle = { padding: 20, height: "70vh", width: 280 };
   render() {
     return (
-      <div className="App">
+      <div className="Login">
         <h2 style={{ textAlign: "center", marginTop: "15%" }}>Login Here!</h2>
         <form
           className="form"
@@ -87,8 +87,8 @@ export default class Login extends Component<acceptedProps, userState> {
             // position: "absolute",
             display: "block",
             width: "30%",
-            left: "50%",
-            top: "50%",
+            // left: "50%",
+            // top: "50%",
             // transform: "translate(100%, 150%)",
           }}
           onSubmit={this.handleSubmit}

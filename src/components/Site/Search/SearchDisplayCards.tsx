@@ -26,8 +26,6 @@ export default class SearchDisplayCards extends Component<acceptedProps, {}> {
   render() {
     return (
       <div>
-        
-        
         <CardDeck>
           {this.props.results.map((result, index) => (
             <Card style={{ minWidth: "250px", maxWidth: "250px" }}>
@@ -38,16 +36,16 @@ export default class SearchDisplayCards extends Component<acceptedProps, {}> {
               <CardBody>
                 <CardTitle>{result.snippet.title}</CardTitle>
                 <CardText>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  {/* Some quick example text to build on the card title and make up
+                  the bulk of the card's content. */}
                 </CardText>
-                <Button variant="primary">Go</Button>
+                {/* <Button variant="primary">{result.snippet.resourceId.videoId}</Button> */}
+                <Button variant="primary" href="https://www.youtube.com/watch?v={result.snippet.resourceId.videoId}">Go</Button>
               </CardBody>
             </Card>
           ))}
         </CardDeck>
-       
-        
+              
       </div>
     );
   }

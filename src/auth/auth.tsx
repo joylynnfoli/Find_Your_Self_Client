@@ -5,6 +5,8 @@ import Register from "./Register";
 // import backgroundImage from "./Assets/"
 import Grid from "@material-ui/core/Grid";
 import styled from 'styled-components'
+import ImageCenterFocusStrong from "material-ui/svg-icons/image/center-focus-strong";
+// import "../auth/"
 
 // const useStyles = makeStyles(theme) => ({
 //   root:{
@@ -60,7 +62,7 @@ export default class Auth extends Component<acceptedProps, userState> {
            }}>
             </div>  */}
             </Jumbotron>
-        <div>
+        <div id="container">
           {this.state.showLogin ? (
             <div>
               <Register
@@ -74,7 +76,14 @@ export default class Auth extends Component<acceptedProps, userState> {
             </div>
           )}
           <br />
-          <Button
+          <Button style={{
+            position: "relative",
+            left: "50%",
+            top: "75%",
+            // transform: "translate(-50%, -75%)",
+            marginBottom: "20px",
+            padding: "20px, 50px, 20px"
+          }}
             variant="contained"
             onClick={(e) => {
               this.loginToggle(e);
@@ -85,19 +94,25 @@ export default class Auth extends Component<acceptedProps, userState> {
         </div>
         <p
           style={{
-            position: "absolute",
-            left: "50%",
+            position: "relative",
+            // left: "10%",
+            // marginRight: "20px",
             top: "75%",
-            transform: "translate(-50%, -75%)",
+            // alignItems: "center",
+            // transform: "translate(-50%, -75%)",
+            marginBottom: "20px",
+            // padding: "20px, 20px, 20px",
+            maxWidth: "600px",
+            marginLeft: "30%",
           }}
         >
-          {/* Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
           aliquip ex ea commodo consequat. Duis aute irure dolor in
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum. */}
+          culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </div>
     );

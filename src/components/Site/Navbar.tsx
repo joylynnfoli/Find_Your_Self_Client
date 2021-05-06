@@ -40,11 +40,11 @@ export default class Navbar extends Component<acceptedProps, {}> {
               Favorites
             </Link>
           </Button>
-          <Button size="large" variant="contained" color="secondary">
+          <>
             <Link style={{ color: "#0b9873" }} to="/Search">
               Search
             </Link>
-          </Button>
+          </>
         </Toolbar> */}
         <MenuList>
           <MenuItem component={Link} to="/">
@@ -59,6 +59,13 @@ export default class Navbar extends Component<acceptedProps, {}> {
           <MenuItem component={Link} to="/Search">
             Search
           </MenuItem>
+          <Button size="large" variant="contained" color="secondary"
+            onClick={this.props.clickLogout}
+          >
+            <Link style={{ color: "#000000" }} to="/home">
+              Logout
+            </Link>
+          </Button>
         </MenuList>
         <Switch>
           <Route exact path="/">
