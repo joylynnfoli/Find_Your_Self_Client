@@ -11,13 +11,13 @@ import Select from "@material-ui/core/Select";
 type acceptedProps = {
   sessionToken: any | null 
     // Authorizaton: string | null;
-    topicsId: number;
 };
 
 type acceptedState = {
   playlistId: string;
   title: string;
   note: string;
+  topicId: number;
   topics: any []
 };
 
@@ -28,6 +28,7 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
       playlistId: "",
       title: "",
       note: "",
+      topicId: 0,
       topics: []
     };
     console.log(props);
@@ -109,7 +110,7 @@ fetchAllTopics = (e: any) => {
 }
 handleDelete = (id: number) => {
    if (this.props.sessionToken){
-  fetch(`${APIURL}/topics/delete/${this.props.topicsId}`, {
+  fetch(`${APIURL}/topics/delete/${this.state.topicId}`, {
     method: "DELETE",
     headers: new Headers({
       "Content-Type": "application/json",
@@ -118,7 +119,8 @@ handleDelete = (id: number) => {
   })
   .then((res)=> res.json())
   .then((data) => {
-    console.log(data)
+    console.log(this.state.topicId)
+    // console.log(data)
   })
 }
 }
@@ -180,7 +182,9 @@ render() {
             }}key={index}>{data.id}. {data.title}, {data.note}
             <Button
              variant="contained"
-             onClick={(e) =>{this.handleDelete(this.data.id)
+             onClick={(e) =>{
+               this.setState({topicId:data.id})
+               this.handleDelete(this.state.topicId)
             }}>
 
               Delete
