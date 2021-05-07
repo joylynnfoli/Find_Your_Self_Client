@@ -40,7 +40,7 @@ export default class SearchDisplayCards extends Component<acceptedProps, {}> {
                   the bulk of the card's content. */}
                 </CardText>
                 {/* <Button variant="primary">{result.snippet.resourceId.videoId}</Button> */}
-                <Button variant="primary" href="https://www.youtube.com/watch?v={result.snippet.resourceId.videoId}">Go</Button>
+                <Button variant="primary" href="http://www.youtube.com/watch?v={result.snippet.resourceId.videoId}">Go</Button>
               </CardBody>
             </Card>
           ))}

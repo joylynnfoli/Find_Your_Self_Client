@@ -11,12 +11,14 @@ import Select from "@material-ui/core/Select";
 type acceptedProps = {
   sessionToken: any | null 
     // Authorizaton: string | null;
+    topicsId: number;
 };
 
 type acceptedState = {
   playlistId: string;
   title: string;
   note: string;
+  topics: any []
 };
 
 export default class Topics extends Component<acceptedProps, acceptedState> {
@@ -26,6 +28,7 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
       playlistId: "",
       title: "",
       note: "",
+      topics: []
     };
     console.log(props);
   }
@@ -83,23 +86,59 @@ fetchTopics = (e: any) => {
   .then((res) => res.json())
   .then((data) => {
     console.log(data)
+    this.setState({topics:data})
   })
+}
+
+fetchAllTopics = (e: any) => {
+  console.log("fetchAllTopics");
+  e.preventDefault();
+  console.log(this.props.sessionToken)
+  fetch(`${APIURL}/topics/all`, {
+    method: "GET",
+    headers: new Headers ({
+      Authorization: this.props.sessionToken,
+      'Content-Type': 'application/json'
+    })
+  })
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data)
+    this.setState({topics:data})
+  })
+}
+handleDelete = (id: number) => {
+   if (this.props.sessionToken){
+  fetch(`${APIURL}/topics/delete/${this.props.topicsId}`, {
+    method: "DELETE",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: this.props.sessionToken,
+    })
+  })
+  .then((res)=> res.json())
+  .then((data) => {
+    console.log(data)
+  })
+}
 }
 
 render() {
     return (
+      <>
       <div>
-        <h2 style={{ textAlign: "center", marginTop: "15%" }}>Add Topic</h2>
+        <h2 style={{ textAlign: "center" }}>Add Topic</h2>
         <form
           style={{
             marginLeft: "auto",
-            marginRight: "auto",
+            marginRight: "none",
             width: "45%",
             display: "block",
             // backgroundColor: "#FFFFFF",
           }}
           onSubmit={this.handleSubmit}
         >
+
           <TextField
             onChange={(e) => this.setState({ playlistId: e.target.value })}
             id="playlistId"
@@ -123,11 +162,38 @@ render() {
           <Button variant="contained" type="submit">
             Add
           </Button>
-          <Button variant="contained" onClick={()=>this.fetchTopics}>
+          <Button variant="contained" onClick={this.fetchAllTopics}>
             Get
           </Button>
         </form>
+        
       </div>
+      <div>
+          {this.state.topics.map((data, index) => {
+            console.log(data);
+            return <div><p style={{
+              marginLeft: "25%",
+              // marginRight: "auto",
+              width: "500px",
+              display: "block",
+              // backgroundColor: "#FFFFFF",
+            }}key={index}>{data.id}. {data.title}, {data.note}
+            <Button
+             variant="contained"
+             onClick={(e) =>{this.handleDelete(this.data.id)
+            }}>
+
+              Delete
+            </Button>
+            </p>
+            <br/>
+            </div>
+
+}
+)}
+</div>
+          
+      </>
     );
   }
 }
