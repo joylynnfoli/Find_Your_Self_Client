@@ -9,6 +9,7 @@ type sessionState = {
   sessionToken: string | null;
   role: string | null;
   email: string | null;
+  topicId: number | null;
 };
 
 export default class App extends Component<{}, sessionState> {
@@ -18,6 +19,7 @@ export default class App extends Component<{}, sessionState> {
       sessionToken: "",
       role: "",
       email: "",
+      topicId: 0,
     };
   }
 
@@ -26,6 +28,11 @@ export default class App extends Component<{}, sessionState> {
       this.setState({ sessionToken: localStorage.getItem("sessionToken") });
     }
   }
+
+  updateTopicId = (newTopicId: number) => {
+    this.setState({ topicId: newTopicId });
+    console.log("topicId from App: ", newTopicId);
+  };
 
   updateToken = (newToken: string) => {
     localStorage.setItem("sessionToken", newToken);
@@ -56,6 +63,8 @@ export default class App extends Component<{}, sessionState> {
           <Navbar
             sessionToken={this.state.sessionToken}
             clickLogout={this.clearToken}
+            topicId={this.state.topicId}
+            updateTopicId={this.updateTopicId}
           />
         </Router>
       </>

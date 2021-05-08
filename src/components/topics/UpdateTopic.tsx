@@ -5,14 +5,15 @@ import APIURL from "../../helpers/environment";
 
 type acceptedProps = {
     sessionToken: any | null
-    topicId: number 
+    topicId: number | null
+    updateTopicId: (newTopicId: number) => void;
 }
 
 type acceptedState = {
   playlistId: string;
   title: string;
   note: string;
-  topicId: number;
+  // topicId: number;
 };
 
 export default class UpdateTopic extends
@@ -23,7 +24,7 @@ Component<acceptedProps, acceptedState> {
         playlistId: "",
         title: "",
         note: "",
-        topicId: 0,  
+        // topicId: 0,  
     }
 }
 
@@ -32,7 +33,8 @@ this.fetchTopic()
 }
 fetchTopic=()=>{
     if (this.props.sessionToken){
-        fetch(`${APIURL}/topics/${this.props.topicId}`,{
+      console.log(this.props.topicId);
+        fetch(`${APIURL}/topics/one/${this.props.topicId}`,{
             method: "GET",
             headers: new Headers ({
                 Authorization: this.props.sessionToken, 
@@ -43,9 +45,9 @@ fetchTopic=()=>{
         })
         .then((res) => res.json())
         .then((data) => {
-            this.setState({playlistId: data.topic.id});
-            this.setState({title: data.topic.title});
-            this.setState({note: data.topic.note});
+            this.setState({playlistId: data.id});
+            this.setState({title: data.title});
+            this.setState({note: data.note});
         })
         .catch((err)=>console.log(err));
     }
@@ -54,6 +56,7 @@ fetchTopic=()=>{
 handleUpdate = (e: any) => {
     console.log("handleUpdate called")
     if (this.props.sessionToken){
+      console.log(this.props.topicId)  
    fetch(`${APIURL}/topics/update/${this.props.topicId}`, {
      method: "PUT",
      headers: new Headers({
@@ -81,9 +84,9 @@ handleUpdate = (e: any) => {
 render() {
     return(
         <div>
-            <h1>Update Topic</h1>
+          {console.log(this.props.topicId)}
+            <h1 style={{ textAlign: "center" }}>Update Topic</h1>
             <div>
-        <h2 style={{ textAlign: "center" }}>Add Topic</h2>
         <form
           style={{
             marginLeft: "auto",
@@ -111,6 +114,7 @@ render() {
           <TextField
             value={this.state.note}
             onChange={(e) => this.setState({ note: e.target.value })}
+          
             id="Note"
             label="Note"
             multiline

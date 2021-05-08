@@ -116,9 +116,11 @@ export default class Search extends Component<searchProps, acceptedCategories> {
             Richard Schwartz Podcasts
           </MenuItem>
         </Select>
-        <Button
+        <Button style={{
+              minWidth: "20%"
+            }}
           variant="contained"
-          color="red"
+          // color="red"
           onClick={() => {
             this.fetchPlaylist();
           }}

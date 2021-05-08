@@ -8,11 +8,14 @@ import Grid from "@material-ui/core/Grid";
 import MenuList from "@material-ui/core/MenuList";
 import Topics from "../topics/Topics";
 import UpdateTopic from "../topics/UpdateTopic"
+import Comment from "../Site/Comment"
 
 type acceptedProps = {
   sessionToken: string | null;
   clickLogout: () => void;
-  topicId: number; 
+  topicId: number | null; 
+  updateTopicId: (newTopicId: number) => void;
+
   // username: string | null | undefined;
 };
 
@@ -22,6 +25,8 @@ export default class Navbar extends Component<acceptedProps, {}> {
     this.state = {};
     console.log(props);
   }
+
+  
   render() {
     return (
       <div>
@@ -58,9 +63,9 @@ export default class Navbar extends Component<acceptedProps, {}> {
           <MenuItem component={Link} to="/Topics">
             Topics
           </MenuItem>
-          <MenuItem component={Link} to="/Update Topic">
+          {/* <MenuItem component={Link} to="/UpdateTopic">
             Update Topic
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem component={Link} to="/Search">
             Search
           </MenuItem>
@@ -83,10 +88,15 @@ export default class Navbar extends Component<acceptedProps, {}> {
             <Search sessionToken={this.props.sessionToken} />
           </Route>
           <Route exact path="/Topics">
-            <Topics sessionToken={this.props.sessionToken} />
+            <Topics sessionToken={this.props.sessionToken} updateTopicId={this.props.updateTopicId} topicId={this.props.topicId} />
           </Route>
           <Route exact path="/UpdateTopic">
-            <UpdateTopic sessionToken={this.props.sessionToken} topicId={this.props.topicId}/>
+            <UpdateTopic sessionToken={this.props.sessionToken} updateTopicId={this.props.updateTopicId}
+             topicId={this.props.topicId}/>
+          </Route>
+          <Route exact path="/Comment">
+            <Comment sessionToken={this.props.sessionToken} 
+             topicId={this.props.topicId}/>
           </Route>
         </Switch>
       </div>

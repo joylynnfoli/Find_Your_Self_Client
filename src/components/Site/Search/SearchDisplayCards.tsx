@@ -28,7 +28,7 @@ export default class SearchDisplayCards extends Component<acceptedProps, {}> {
       <div>
         <CardDeck>
           {this.props.results.map((result, index) => (
-            <Card style={{ minWidth: "250px", maxWidth: "250px" }}>
+            <Card style={{ margin: "20px 20px 20px 50px", minWidth: "20%", maxWidth: "20%" }}>
               <CardImg
                 variant="top"
                 src={result.snippet.thumbnails.medium.url}
@@ -40,7 +40,7 @@ export default class SearchDisplayCards extends Component<acceptedProps, {}> {
                   the bulk of the card's content. */}
                 </CardText>
                 {/* <Button variant="primary">{result.snippet.resourceId.videoId}</Button> */}
-                <Button variant="primary" href="http://www.youtube.com/watch?v={result.snippet.resourceId.videoId}">Go</Button>
+                <Button variant="primary" href={"http://www.youtube.com/watch?v=" + result.snippet.resourceId.videoId}target="_blank"rel="noreferrer">Go</Button>
               </CardBody>
             </Card>
           ))}

@@ -1,16 +1,18 @@
 import React, { Component } from "react";
+import { BrowserRouter, Link } from "react-router-dom";
 import APIURL from "../../helpers/environment";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Button } from "@material-ui/core";
 import { FormControl, Input, InputLabel } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import { Grid, Paper } from "@material-ui/core";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 type acceptedProps = {
-  sessionToken: any | null 
-    // Authorizaton: string | null;
+  sessionToken: any | null;
+  topicId: number | null;
+  updateTopicId: (newTopicId: number) => void;
+  // Authorizaton: string | null;
 };
 
 type acceptedState = {
@@ -18,7 +20,7 @@ type acceptedState = {
   title: string;
   note: string;
   topicId: number;
-  topics: any []
+  topics: any[];
 };
 
 export default class Topics extends Component<acceptedProps, acceptedState> {
@@ -29,19 +31,19 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
       title: "",
       note: "",
       topicId: 0,
-      topics: []
+      topics: [],
     };
     console.log(props);
   }
   handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log(this.props.sessionToken)
+    console.log(this.props.sessionToken);
     fetch(`${APIURL}/topics/add`, {
       method: "POST",
       headers: new Headers({
-        Authorization: this.props.sessionToken, 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        Authorization: this.props.sessionToken,
+        "Content-Type": "application/json",
+        Accept: "application/json",
       }),
       body: JSON.stringify({
         topics: {
@@ -53,183 +55,200 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
     })
       .then((res) => res.json())
       .then((data) => {
-        this.fetchTopics(e)
+        this.fetchTopics(e);
         console.log(data);
       });
   };
-  
-//   fetchTopics = (e: any) => { 
-//     e.preventDefault();
-//   // console.log(this.props.sessionToken)
-// fetch(`${APIURL}/topics/mine`, {
-//   method: "GET",
-//   headers: new Headers({
-//     Authorization: this.props.sessionToken,
-//     'Content-Type': 'application/json',
-//     'Accept': 'application/json'
-// })
-// .then((res) => res.json())
-//       .then((data) => {
-//         console.log(data);
-//       });
-//   };
 
-fetchTopics = (e: any) => {
-  e.preventDefault();
-  console.log(this.props.sessionToken)
-  fetch(`${APIURL}/topics/mine`, {
-    method: "GET",
-    headers: new Headers ({
-      Authorization: this.props.sessionToken,
-      'Content-Type': 'application/json'
+  //   fetchTopics = (e: any) => {
+  //     e.preventDefault();
+  //   // console.log(this.props.sessionToken)
+  // fetch(`${APIURL}/topics/mine`, {
+  //   method: "GET",
+  //   headers: new Headers({
+  //     Authorization: this.props.sessionToken,
+  //     'Content-Type': 'application/json',
+  //     'Accept': 'application/json'
+  // })
+  // .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //       });
+  //   };
+
+  fetchTopics = (e: any) => {
+    e.preventDefault();
+    console.log(this.props.sessionToken);
+    fetch(`${APIURL}/topics/mine`, {
+      method: "GET",
+      headers: new Headers({
+        Authorization: this.props.sessionToken,
+        "Content-Type": "application/json",
+      }),
     })
-  })
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data)
-    this.setState({topics:data})
-  })
-}
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({ topics: data });
+      });
+  };
 
-fetchAllTopics = (e: any) => {
-  console.log("fetchAllTopics");
-  e.preventDefault();
-  console.log(this.props.sessionToken)
-  fetch(`${APIURL}/topics/all`, {
-    method: "GET",
-    headers: new Headers ({
-      Authorization: this.props.sessionToken,
-      'Content-Type': 'application/json'
+  fetchAllTopics = (e: any) => {
+    console.log("fetchAllTopics");
+    e.preventDefault();
+    console.log(this.props.sessionToken);
+    fetch(`${APIURL}/topics/all`, {
+      method: "GET",
+      headers: new Headers({
+        Authorization: this.props.sessionToken,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      }),
     })
-  })
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data)
-    this.setState({topics:data})
-  })
-}
-handleDelete = (id: number) => {
-   if (this.props.sessionToken){
-  fetch(`${APIURL}/topics/delete/${this.state.topicId}`, {
-    method: "DELETE",
-    headers: new Headers({
-      "Content-Type": "application/json",
-      Authorization: this.props.sessionToken,
-    })
-  })
-  .then((res)=> res.json())
-  .then((data) => {
-    console.log(this.state.topicId)
-    // console.log(data)
-  })
-}
-}
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        this.setState({ topics: data });
+      });
+  };
+  handleDelete = (id: number) => {
+    if (this.props.sessionToken) {
+      console.log(this.state.topicId);
+      fetch(`${APIURL}/topics/delete/${this.state.topicId}`, {
+        method: "DELETE",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: this.props.sessionToken,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(this.state.topicId);
+        });
+    }
+  };
 
-handleUpdate = (id: number) => {
-  console.log("handleUpdate called")
-  if (this.props.sessionToken){
- fetch(`${APIURL}/topics/update/${this.state.topicId}`, {
-   method: "PUT",
-   headers: new Headers({
-     "Content-Type": "application/json",
-     Authorization: this.props.sessionToken,
-     accept: "application/json",
-   }),
-   body: JSON.stringify({
-    topics: {
-      playlistId: this.state.playlistId,
-      title: this.state.title,
-      note: this.state.note,
-    },
- }),
-})
- .then((res)=> res.json())
- .then((data) => {
-  //  this.fetchAllTopics();
-  //  console.log(`update,${this.state.topicId}`);
-   // console.log(data)
- })
-}
-};
+  // handleUpdate = (id: number) => {
+  //   console.log("handleUpdate called")
+  //   if (this.props.sessionToken){
+  //  fetch(`${APIURL}/topics/update/${this.state.topicId}`, {
+  //    method: "PUT",
+  //    headers: new Headers({
+  //      "Content-Type": "application/json",
+  //      Authorization: this.props.sessionToken,
+  //      accept: "application/json",
+  //    }),
+  //    body: JSON.stringify({
+  //     topics: {
+  //       playlistId: this.state.playlistId,
+  //       title: this.state.title,
+  //       note: this.state.note,
+  //     },
+  //  }),
+  // })
+  //  .then((res)=> res.json())
+  //  .then((data) => {
 
-render() {
+  //  })
+  // }
+  // };
+
+  render() {
     return (
       <>
-      <div>
-        <h2 style={{ textAlign: "center" }}>Add Topic</h2>
-        <form
-          style={{
-            marginLeft: "auto",
-            marginRight: "none",
-            width: "45%",
-            display: "block",
-            // backgroundColor: "#FFFFFF",
-          }}
-          onSubmit={this.handleSubmit}
-        >
-
-          <TextField
-            onChange={(e) => this.setState({ playlistId: e.target.value })}
-            id="playlistId"
-            label="Playlist ID"
-          />
-          <br />
-          <TextField
-            onChange={(e) => this.setState({ title: e.target.value })}
-            id="Title"
-            label="Title"
-          />
-          <br />
-          <TextField
-            onChange={(e) => this.setState({ note: e.target.value })}
-            id="Note"
-            label="Note"
-            multiline
-            rowsMax={2}
-          />
-          <br />
-          <Button variant="contained" type="submit">
-            Add
-          </Button>
-          <Button variant="contained" onClick={this.fetchAllTopics}>
-            Get
-          </Button>
-        </form>
-        
-      </div>
-      <div>
-          {this.state.topics.map((data, index) => {
-            console.log(data);
-            return <div><p style={{
-              marginLeft: "25%",
-              // marginRight: "auto",
-              width: "500px",
+        <div>
+          <h2 style={{ textAlign: "center" }}>Add Topic</h2>
+          <form
+            style={{
+              marginLeft: "auto",
+              marginRight: "none",
+              width: "45%",
               display: "block",
               // backgroundColor: "#FFFFFF",
-            }}key={index}>{data.id}. {data.title}, {data.note}
-            <Button
-             variant="contained"
-             onClick={(e) =>{
-               this.setState({topicId:data.id})
-               this.handleDelete(this.state.topicId)
-            }}>
-              Delete
+            }}
+            onSubmit={this.handleSubmit}
+          >
+            <TextField
+              onChange={(e) => this.setState({ playlistId: e.target.value })}
+              id="playlistId"
+              label="Playlist ID"
+            />
+            <br />
+            <TextField
+              onChange={(e) => this.setState({ title: e.target.value })}
+              id="Title"
+              label="Title"
+            />
+            <br />
+            <TextField
+              onChange={(e) => this.setState({ note: e.target.value })}
+              id="Note"
+              label="Note"
+              multiline
+              rowsMax={2}
+            />
+            <br />
+            <Button variant="contained" type="submit">
+              Add
             </Button>
-            <Button
-             variant="contained"
-             onClick={(e) =>{
-               this.setState({topicId:data.id})
-               this.handleUpdate(this.state.topicId)
-            }}>
-              Update
+            <Button variant="contained" onClick={this.fetchAllTopics}>
+              Get
             </Button>
-            </p>
-            <br/>
-            </div>
-}
-)}
-</div>
-          
+          </form>
+        </div>
+        <div>
+          {this.state.topics.map((data, index) => {
+            console.log(data);
+            return (
+              <div>
+                <p
+                  style={{
+                    marginLeft: "25%",
+                    // marginRight: "auto",
+                    width: "500px",
+                    display: "block",
+                    // backgroundColor: "#FFFFFF",
+                  }}
+                  key={index}
+                >
+                  {data.id}. {data.title}, {data.note}
+                  <Button
+                    variant="contained"
+                    onClick={(e) => {
+                      this.setState({ topicId: data.id });
+                      this.handleDelete(this.state.topicId);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                                    <Link to="/UpdateTopic">
+                    <Button
+                      variant="contained"
+                      onClick={(e) => {
+                        this.setState({ topicId: data.id });
+                        this.props.updateTopicId(data.id);
+                      }}
+                    >
+                      Update
+                    </Button>
+                  </Link>
+                  <Link to="/Comment">
+                    <Button
+                      variant="contained"
+                      onClick={(e) => {
+                        this.setState({ topicId: data.id });
+                        this.props.updateTopicId(data.id);
+                      }}
+                    >
+                      Add A Comment
+                    </Button>
+                  </Link>
+                </p>
+                <br />
+              </div>
+            );
+          })}
+        </div>
       </>
     );
   }
