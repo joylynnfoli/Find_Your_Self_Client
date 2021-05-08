@@ -5,8 +5,15 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Button } from "@material-ui/core";
 import { FormControl, Input, InputLabel } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@material-ui/core";
 
 type acceptedProps = {
   sessionToken: any | null;
@@ -23,6 +30,12 @@ type acceptedState = {
   topics: any[];
 };
 
+const styles = {
+  table: {
+    maxWidth: "80%"
+  },
+};
+
 export default class Topics extends Component<acceptedProps, acceptedState> {
   constructor(props: acceptedProps) {
     super(props);
@@ -35,6 +48,12 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
     };
     console.log(props);
   }
+
+
+  componentDidMount(){
+    this.fetchAllTopics()
+  }
+
   handleSubmit = (e: any) => {
     e.preventDefault();
     console.log(this.props.sessionToken);
@@ -93,9 +112,9 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
       });
   };
 
-  fetchAllTopics = (e: any) => {
+  fetchAllTopics = () => {
     console.log("fetchAllTopics");
-    e.preventDefault();
+    // e.preventDefault();
     console.log(this.props.sessionToken);
     fetch(`${APIURL}/topics/all`, {
       method: "GET",
@@ -126,6 +145,75 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
           console.log(this.state.topicId);
         });
     }
+  };
+
+  topicMapper = () => {
+    return this.state.topics.map((data, index) => {
+      return (
+        <TableRow key={index}>
+          <TableCell component="th" scope="row">
+            {data.id}
+          </TableCell>
+          <TableCell align="right">{data.playlist}</TableCell>
+
+          <TableCell align="right">{data.title}</TableCell>
+          <TableCell align="right">{data.note}</TableCell>
+          {/* <TableCell align="right">{data.comment}</TableCell> */}
+          {/* // <TableCell align="right">{data.vendorId}</TableCell> */}
+          <TableCell align="right">
+            <Button
+              variant="contained"
+              onClick={(e) => {
+                this.setState({ topicId: data.id });
+                this.handleDelete(this.state.topicId);
+              }}
+            >
+              Delete
+            </Button>
+            <Link to="/UpdateTopic">
+              <Button
+                variant="contained"
+                onClick={(e) => {
+                  this.setState({ topicId: data.id });
+                  this.props.updateTopicId(data.id);
+                }}
+              >
+                Update
+              </Button>
+            </Link>
+            <Link to="/Comment">
+              <Button
+                variant="contained"
+                onClick={(e) => {
+                  this.setState({ topicId: data.id });
+                  this.props.updateTopicId(data.id);
+                }}
+              >
+                Add A Comment
+              </Button>
+            </Link>
+            {/* <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              value="locationData.id"
+              onClick={(e) => {
+                this.props.updateTopicId(data.id);
+              }}
+            >
+              <Link style={{ color: "#FFFFFF" }} to="/UpdateTopic">
+                Edit
+              </Link>
+            </Button> */}
+          </TableCell>
+          {/* <TableCell>
+            <Button type="submit" variant="contained" color="secondary">
+              Delete
+            </Button>
+            </TableCell> */}
+        </TableRow>
+      );
+    });
   };
 
   // handleUpdate = (id: number) => {
@@ -197,7 +285,51 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
           </form>
         </div>
         <div>
-          {this.state.topics.map((data, index) => {
+          <h3
+            style={
+              {
+                marginLeft: "40%",
+                marginRight: "auto",
+              }
+            }
+          >
+            Topics Table
+          </h3>
+          <TableContainer
+            component={Paper}
+            style={{
+              // marginLeft: "auto",
+              // marginRight: "none",
+              maxWidth: "80%",
+              marginLeft: "10%",
+              // display: "block",
+              // backgroundColor: "#FFFFFF",
+            }}
+          >
+            <Table style={styles.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="right">Playlist</TableCell>
+                  {/* <TableCell align="right">UPC</TableCell> */}
+                  <TableCell align="right">Title</TableCell>
+                  {/* <TableCell align="right">Storage Type</TableCell>
+                <TableCell align="right">Storage Container</TableCell>
+                <TableCell align="right">Quantity</TableCell>
+                <TableCell align="right">Unit Of Measure</TableCell> */}
+                  {/* <TableCell align="right">Note</TableCell> */}
+                  <TableCell align="right">Comment</TableCell>
+                  {/* <TableCell align="right">Location Id</TableCell>
+                  <TableCell align="right">Vendor Id</TableCell> */}
+                  {/* <TableCell align="right"></TableCell> */}
+                  {/* <TableCell align="right"></TableCell> */}
+                </TableRow>
+              </TableHead>
+              <TableBody>{this.topicMapper()}</TableBody>
+              {/* {console.log("Welcome to grocery mapper")} */}
+            </Table>
+          </TableContainer>
+
+          {/* {this.state.topics.map((data, index) => {
             console.log(data);
             return (
               <div>
@@ -212,44 +344,15 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
                   key={index}
                 >
                   {data.id}. {data.title}, {data.note}
-                  <Button
-                    variant="contained"
-                    onClick={(e) => {
-                      this.setState({ topicId: data.id });
-                      this.handleDelete(this.state.topicId);
-                    }}
-                  >
-                    Delete
-                  </Button>
-                                    <Link to="/UpdateTopic">
-                    <Button
-                      variant="contained"
-                      onClick={(e) => {
-                        this.setState({ topicId: data.id });
-                        this.props.updateTopicId(data.id);
-                      }}
-                    >
-                      Update
-                    </Button>
-                  </Link>
-                  <Link to="/Comment">
-                    <Button
-                      variant="contained"
-                      onClick={(e) => {
-                        this.setState({ topicId: data.id });
-                        this.props.updateTopicId(data.id);
-                      }}
-                    >
-                      Add A Comment
-                    </Button>
-                  </Link>
+                  
                 </p>
                 <br />
               </div>
             );
-          })}
+          })} */}
         </div>
       </>
     );
   }
+
 }
