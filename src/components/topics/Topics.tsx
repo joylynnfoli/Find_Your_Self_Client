@@ -125,6 +125,33 @@ handleDelete = (id: number) => {
 }
 }
 
+handleUpdate = (id: number) => {
+  console.log("handleUpdate called")
+  if (this.props.sessionToken){
+ fetch(`${APIURL}/topics/update/${this.state.topicId}`, {
+   method: "PUT",
+   headers: new Headers({
+     "Content-Type": "application/json",
+     Authorization: this.props.sessionToken,
+     accept: "application/json",
+   }),
+   body: JSON.stringify({
+    topics: {
+      playlistId: this.state.playlistId,
+      title: this.state.title,
+      note: this.state.note,
+    },
+ }),
+})
+ .then((res)=> res.json())
+ .then((data) => {
+  //  this.fetchAllTopics();
+  //  console.log(`update,${this.state.topicId}`);
+   // console.log(data)
+ })
+}
+};
+
 render() {
     return (
       <>
@@ -186,13 +213,19 @@ render() {
                this.setState({topicId:data.id})
                this.handleDelete(this.state.topicId)
             }}>
-
               Delete
+            </Button>
+            <Button
+             variant="contained"
+             onClick={(e) =>{
+               this.setState({topicId:data.id})
+               this.handleUpdate(this.state.topicId)
+            }}>
+              Update
             </Button>
             </p>
             <br/>
             </div>
-
 }
 )}
 </div>

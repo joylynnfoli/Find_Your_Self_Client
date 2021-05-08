@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
-import ViewPlaylist from "../NotInUse/ViewPlaylist";
+import ViewPlaylist1 from "./ViewPlaylist1"
 
 type homeProps = {
   sessionToken: string | null;
@@ -51,7 +51,7 @@ export default class Home extends Component<homeProps, acceptedState> {
             <p key={index}> {playList.snippet.title} </p>
           </div>
         ))} */}
-        <ViewPlaylist
+        <ViewPlaylist1
           sessionToken={this.props.sessionToken}
           meditations={this.state.meditations}
         />

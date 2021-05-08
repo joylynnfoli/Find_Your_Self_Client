@@ -7,10 +7,12 @@ import Search from "./Search/Search";
 import Grid from "@material-ui/core/Grid";
 import MenuList from "@material-ui/core/MenuList";
 import Topics from "../topics/Topics";
+import UpdateTopic from "../topics/UpdateTopic"
 
 type acceptedProps = {
   sessionToken: string | null;
   clickLogout: () => void;
+  topicId: number; 
   // username: string | null | undefined;
 };
 
@@ -47,7 +49,7 @@ export default class Navbar extends Component<acceptedProps, {}> {
           </>
         </Toolbar> */}
         <MenuList>
-          <MenuItem component={Link} to="/">
+          <MenuItem component={Link} to="/Home">
             Home
           </MenuItem>
           <MenuItem component={Link} to="/Favorites">
@@ -55,6 +57,9 @@ export default class Navbar extends Component<acceptedProps, {}> {
           </MenuItem>
           <MenuItem component={Link} to="/Topics">
             Topics
+          </MenuItem>
+          <MenuItem component={Link} to="/Update Topic">
+            Update Topic
           </MenuItem>
           <MenuItem component={Link} to="/Search">
             Search
@@ -68,7 +73,7 @@ export default class Navbar extends Component<acceptedProps, {}> {
           </Button>
         </MenuList>
         <Switch>
-          <Route exact path="/">
+          <Route exact path="/Home">
             <Home sessionToken={this.props.sessionToken} />
           </Route>
           <Route exact path="/Favorites">
@@ -79,6 +84,9 @@ export default class Navbar extends Component<acceptedProps, {}> {
           </Route>
           <Route exact path="/Topics">
             <Topics sessionToken={this.props.sessionToken} />
+          </Route>
+          <Route exact path="/UpdateTopic">
+            <UpdateTopic sessionToken={this.props.sessionToken} topicId={this.props.topicId}/>
           </Route>
         </Switch>
       </div>
