@@ -45,9 +45,14 @@ fetchTopic=()=>{
         })
         .then((res) => res.json())
         .then((data) => {
+          // this.setState({ playlistId: data});
+          // this.setState({ title: data });
+          // this.setState({ note: data });
+          // console.log(this.state.title)
             this.setState({playlistId: data.id});
             this.setState({title: data.title});
             this.setState({note: data.note});
+            console.log(this.state.note)
         })
         .catch((err)=>console.log(err));
     }
@@ -116,13 +121,13 @@ render() {
             onChange={(e) => this.setState({ note: e.target.value })}
           
             id="Note"
-            label="Note"
+            label="Note on Topic"
             multiline
             rowsMax={2}
           />
           <br />
           <Button variant="contained" type="submit">
-            Edit
+           Save Update
           </Button>
           
         </form>

@@ -10,6 +10,7 @@ type sessionState = {
   role: string | null;
   email: string | null;
   topicId: number | null;
+  commentId: number | null 
 };
 
 export default class App extends Component<{}, sessionState> {
@@ -20,6 +21,7 @@ export default class App extends Component<{}, sessionState> {
       role: "",
       email: "",
       topicId: 0,
+      commentId: 0
     };
   }
 
@@ -32,6 +34,11 @@ export default class App extends Component<{}, sessionState> {
   updateTopicId = (newTopicId: number) => {
     this.setState({ topicId: newTopicId });
     console.log("topicId from App: ", newTopicId);
+  };
+
+  updateCommentId = (newCommentId: number) => {
+    this.setState({ commentId: newCommentId });
+    console.log("commentId from App: ", newCommentId);
   };
 
   updateToken = (newToken: string) => {
@@ -65,6 +72,7 @@ export default class App extends Component<{}, sessionState> {
             clickLogout={this.clearToken}
             topicId={this.state.topicId}
             updateTopicId={this.updateTopicId}
+            updateCommentId={this.updateCommentId}
           />
         </Router>
       </>

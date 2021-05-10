@@ -2,20 +2,20 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, Toolbar, MenuItem } from "@material-ui/core";
 import Home from "./Home";
-// import Favorites from "./Favorites";
 import Search from "./Search/Search";
 import Grid from "@material-ui/core/Grid";
 import MenuList from "@material-ui/core/MenuList";
-import Topics from "../topics/Topics";
-import UpdateTopic from "../topics/UpdateTopic"
-import Comment from "../Site/Comment"
+import Topics from "../Topics/Topics";
+import UpdateTopic from "../Topics/UpdateTopic"
+import Comment from "./Comments/Comment"
+import UpdateComment from "./Comments/UpdateComment"
 
 type acceptedProps = {
   sessionToken: string | null;
   clickLogout: () => void;
-  topicId: number | null; 
+  topicId: number | null;
   updateTopicId: (newTopicId: number) => void;
-
+  updateCommentId: (newCommentId: number) => void;
   // username: string | null | undefined;
 };
 
@@ -31,8 +31,17 @@ export default class Navbar extends Component<acceptedProps, {}> {
     return (
       <div>
         {/* <h3>User Navbar!</h3> */}
-        <h3>
-          Welcome User
+        <h3
+          style={{
+            marginTop: "2%",
+            marginLeft: "35%",
+            // marginRight: "auto",
+            width: "500px",
+            display: "block",
+            // backgroundColor: "#FFFFFF",
+          }}
+        >
+          All Parts Welcome!
           {/* {this.props.user} */}
         </h3>
 
@@ -69,7 +78,10 @@ export default class Navbar extends Component<acceptedProps, {}> {
           <MenuItem component={Link} to="/Search">
             Search
           </MenuItem>
-          <Button size="large" variant="contained" color="secondary"
+          <Button
+            size="large"
+            variant="contained"
+            color="secondary"
             onClick={this.props.clickLogout}
           >
             <Link style={{ color: "#000000" }} to="/home">
@@ -88,15 +100,31 @@ export default class Navbar extends Component<acceptedProps, {}> {
             <Search sessionToken={this.props.sessionToken} />
           </Route>
           <Route exact path="/Topics">
-            <Topics sessionToken={this.props.sessionToken} updateTopicId={this.props.updateTopicId} topicId={this.props.topicId} />
+            <Topics
+              sessionToken={this.props.sessionToken}
+              updateTopicId={this.props.updateTopicId}
+              topicId={this.props.topicId}
+            />
           </Route>
           <Route exact path="/UpdateTopic">
-            <UpdateTopic sessionToken={this.props.sessionToken} updateTopicId={this.props.updateTopicId}
-             topicId={this.props.topicId}/>
+            <UpdateTopic
+              sessionToken={this.props.sessionToken}
+              updateTopicId={this.props.updateTopicId}
+              topicId={this.props.topicId}
+            />
           </Route>
           <Route exact path="/Comment">
-            <Comment sessionToken={this.props.sessionToken} 
-             topicId={this.props.topicId}/>
+            <Comment
+              sessionToken={this.props.sessionToken}
+              topicId={this.props.topicId}
+              updateCommentId={this.props.updateCommentId}
+            />
+          </Route>
+          <Route exact path="/UpdateComment">
+            <UpdateComment
+              sessionToken={this.props.sessionToken}
+              topicId={this.props.topicId}
+            />
           </Route>
         </Switch>
       </div>

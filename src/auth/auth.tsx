@@ -106,13 +106,7 @@ export default class Auth extends Component<acceptedProps, userState> {
             marginLeft: "30%",
           }}
         >
-          Lorem Ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          Find Your Self has curated collections of Internal Family Systems videos to be utilized  for Pracitioners/Therapists needing addtional training or layperson that is wanting to work on their own self therapy or between sessions with their IFS Practioner.  Get unique insights from Richard Schwartz, creator of the IFS model, on how best to handle Protectors(manager/firefighters) and exiles, see session demonstrations and learn the IFS modality in greater depth. You will also find a unique collection of videos from the Internal Family Systems Institute along with other leaders in the field of IFS.  All Parts Welcome!  
         </p>
       </div>
     );
