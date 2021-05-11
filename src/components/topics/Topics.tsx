@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import APIURL from "../../helpers/environment";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { Button, ButtonGroup } from "@material-ui/core";
-import { FormControl, Input, InputLabel } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import {
   Table,
@@ -19,7 +17,6 @@ type acceptedProps = {
   sessionToken: any | null;
   topicId: number | null;
   updateTopicId: (newTopicId: number) => void;
-  // Authorizaton: string | null;
 };
 
 type acceptedState = {
@@ -32,7 +29,7 @@ type acceptedState = {
 
 const styles = {
   table: {
-    maxWidth: "80%"
+    maxWidth: "80%",
   },
 };
 
@@ -49,9 +46,8 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
     console.log(props);
   }
 
-
-  componentDidMount(){
-    this.fetchAllTopics()
+  componentDidMount() {
+    this.fetchAllTopics();
   }
 
   handleSubmit = (e: any) => {
@@ -79,8 +75,6 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
       });
   };
 
- 
-
   fetchTopics = (e: any) => {
     e.preventDefault();
     console.log(this.props.sessionToken);
@@ -100,7 +94,6 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
 
   fetchAllTopics = () => {
     console.log("fetchAllTopics");
-    // e.preventDefault();
     console.log(this.props.sessionToken);
     fetch(`${APIURL}/topics/all`, {
       method: "GET",
@@ -137,65 +130,53 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
     return this.state.topics.map((data, index) => {
       return (
         <TableRow key={index}>
-         
           <TableCell align="right">{data.playlistId}</TableCell>
-
           <TableCell align="right">{data.title}</TableCell>
           <TableCell align="right">{data.note}</TableCell>
-         
           <TableCell align="right">
-          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button 
-            
-                // marginLeft: "50px"}}
-
-              size="small"
+            <ButtonGroup
               variant="contained"
-              onClick={(e) => {
-                this.setState({ topicId: data.id });
-                this.handleDelete(this.state.topicId);
-              }}
+              color="primary"
+              aria-label="contained primary button group"
             >
-              Delete
-            </Button>
-            <Link to="/UpdateTopic">
-              <Button 
-              // style={{
-                // marginLeft: "50px"}}
-                size="small"
+              <Button
                 variant="contained"
                 onClick={(e) => {
                   this.setState({ topicId: data.id });
-                  this.props.updateTopicId(data.id);
+                  this.handleDelete(this.state.topicId);
                 }}
               >
-                Update
-              </Button >
-            </Link>
-            <Link to="/Comment">
-              <Button 
-              // style={{
-                // marginLeft: "50px"}}
-                size="small"
-                variant="contained"
-                onClick={(e) => {
-                  this.setState({ topicId: data.id });
-                  this.props.updateTopicId(data.id);
-                }}
-              >
-                Comment
+                Delete
               </Button>
-            </Link>
-              </ButtonGroup>
-           
+              <Link to="/UpdateTopic">
+                <Button
+                  variant="contained"
+                  onClick={(e) => {
+                    this.setState({ topicId: data.id });
+                    this.props.updateTopicId(data.id);
+                  }}
+                >
+                  Update
+                </Button>
+              </Link>
+              <Link to="/Comment">
+                <Button
+                  variant="contained"
+                  onClick={(e) => {
+                    this.setState({ topicId: data.id });
+                    this.props.updateTopicId(data.id);
+                  }}
+                >
+                  Comment
+                </Button>
+              </Link>
+            </ButtonGroup>
           </TableCell>
-          
         </TableRow>
       );
     });
   };
 
-  
   render() {
     return (
       <>
@@ -205,7 +186,7 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
               paddingTop: "1rem",
               textAlign: "left",
               fontFamily: "Rock Salt",
-              fontSize: "medium",
+              fontSize: "large",
               marginLeft: "15%",
               marginRight: "auto",
             }}
@@ -259,29 +240,16 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
           <h2
             style={{
               textAlign: "center",
-              // fontWeight: "bold",
-              // marginLeft: "40%",
               marginRight: "auto",
               fontFamily: "Rock Salt",
-              fontSize: "large",
+              fontSize: "larger",
               fontWeight: "bold",
               paddingTop: "2rem",
-
-              // marginLeft: "40%",
-              marginRight: "auto",
             }}
           >
             Topics Table
           </h2>
-          <TableContainer
-            component={Paper}
-            style={
-              {
-                // marginLeft: "10%",
-                // marginRight:"10"
-              }
-            }
-          >
+          <TableContainer component={Paper}>
             <Table style={styles.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
@@ -298,5 +266,4 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
       </>
     );
   }
-
 }

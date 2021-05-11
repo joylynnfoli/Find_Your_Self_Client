@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { Card,
+import {
+  Card,
   CardImg,
-  CardText,
   CardBody,
   CardTitle,
-  CardSubtitle,
   Button,
   CardDeck,
-  CardColumns } from "reactstrap"
-
+} from "reactstrap";
 
 type acceptedProp = {
   sessionToken: string | null;
@@ -26,18 +24,11 @@ export default class acceptedProps extends Component<acceptedProp, {}> {
         <h1
           style={{
             textAlign: "center",
-            // fontWeight: "bold",
-            // marginLeft: "40%",
             marginRight: "auto",
             fontFamily: "Rock Salt",
             fontSize: "larger",
             fontWeight: "bold",
             paddingTop: "2rem",
-
-            // marginLeft: "40%",
-            marginRight: "auto",
-            textAlign: "center",
-            // fontWeight: "Bolder",
           }}
         >
           Quick Meditations
@@ -47,7 +38,7 @@ export default class acceptedProps extends Component<acceptedProp, {}> {
             console.log(meditation);
             return (
               <Card
-                style={{ margin: "20px 20px 20px 50px", minWidth: "25%" }}
+                style={{ margin: "20px 20px 20px 50px", minWidth: "30%" }}
                 key={index}
               >
                 <CardImg

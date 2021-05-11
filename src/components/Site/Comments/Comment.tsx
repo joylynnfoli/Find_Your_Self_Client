@@ -107,8 +107,6 @@ export default class UpdateComment extends Component<
       })
         .then((res) => res.json())
         .then((data) => {
-          // this.fetchComments();
-          //  console.log(`update,${this.state.topicId}`);
           console.log(this.state.commentId);
         });
     }
@@ -154,7 +152,6 @@ export default class UpdateComment extends Component<
           <h2
             style={{
               textAlign: "left",
-              // fontWeight: "bold",
               marginLeft: "15%",
               marginRight: "auto",
               fontFamily: "Rock Salt",
@@ -198,18 +195,12 @@ export default class UpdateComment extends Component<
         <div>
           <h4
              style={{
-               
               textAlign: "center",
-              // fontWeight: "bold",
-              // marginLeft: "40%",
               marginRight: "auto",
               fontFamily: "Rock Salt",
               fontSize: "medium",
               fontWeight: "bold",
               paddingTop: "2rem",
-            
-              // marginLeft: "40%",
-              marginRight: "auto",
             }}
           >
             Comments Table

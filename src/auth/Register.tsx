@@ -50,19 +50,8 @@ export default class Register extends Component<acceptedProps, UserState> {
         console.log(data);
       });
   };
-  // else {
-  //   alert("Please enter Email and Password");
-  // }
 
-  // handleEmailChange = (event: any) => {
-  //   const email = event.target.value;
-  //   this.setState({ email: email });
-  // };
-  // handlePasswordChange = (event: any) => {
-  //   const password = event.target.value;
-  //   this.setState({ password: password });
-  // };
-  // paperStyle = { padding: 20, height: "70vh", width: 280 };
+  
   render() {
     return (
       <div className="Register">

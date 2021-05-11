@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "@material-ui/core";
+import { Button, ButtonGroup } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import APIURL from "../../helpers/environment";
 import { Link } from "react-router-dom";
@@ -14,7 +14,6 @@ type acceptedState = {
   playlistId: string;
   title: string;
   note: string;
-  // topicId: number;
 };
 export default class UpdateTopic extends Component<
   acceptedProps,
@@ -26,7 +25,6 @@ export default class UpdateTopic extends Component<
       playlistId: "",
       title: "",
       note: "",
-      // topicId: 0,
     };
   }
   componentDidMount() {
@@ -45,10 +43,6 @@ export default class UpdateTopic extends Component<
       })
         .then((res) => res.json())
         .then((data) => {
-          // this.setState({ playlistId: data});
-          // this.setState({ title: data });
-          // this.setState({ note: data });
-          // console.log(this.state.title)
           this.setState({ playlistId: data.id });
           this.setState({ title: data.title });
           this.setState({ note: data.note });
@@ -71,17 +65,12 @@ export default class UpdateTopic extends Component<
         }),
         body: JSON.stringify({
           topics: {
-            // playlistId: this.state.playlistId,
-            // title: this.state.title,
             note: this.state.note,
           },
         }),
       })
         .then((res) => res.json())
         .then((data) => {
-          //  this.fetchAllTopics();
-          //  console.log(`update,${this.state.topicId}`);
-          // console.log(data)
           <Topics
             sessionToken={this.props.sessionToken}
             updateTopicId={this.props.updateTopicId}
@@ -94,7 +83,7 @@ export default class UpdateTopic extends Component<
     return (
       <div>
         {console.log("TopicId: ", this.props.topicId)}
-        <h1 style={{ textAlign: "center" }}>Update Topic</h1>
+        <h1 style={{ marginLeft: "55%" }}>Update Topic</h1>
         <div>
           <form
             style={{
@@ -102,13 +91,11 @@ export default class UpdateTopic extends Component<
               marginRight: "none",
               width: "45%",
               display: "block",
-              // backgroundColor: "#FFFFFF",
             }}
             onSubmit={this.handleUpdate}
           >
             <TextField
               value={this.state.playlistId}
-              // onChange={(e) => this.setState({ playlistId: e.target.value })}
               variant="filled"
               id="playlistId"
               label="Playlist ID"
@@ -116,7 +103,6 @@ export default class UpdateTopic extends Component<
             <br />
             <TextField
               value={this.state.title}
-              // {(=> this.setState({ title: e.target.value })}
               variant="filled"
               id="Title"
               label="Title"
@@ -125,39 +111,37 @@ export default class UpdateTopic extends Component<
             <TextField
               value={this.state.note}
               onChange={(e) => this.setState({ note: e.target.value })}
-              // color="success"
               id="Note"
               label="Note on Topic"
               multiline
               rowsMax={2}
             />
             <br />
-            <Button
+            <ButtonGroup
               style={{
-                marginLeft: "50px",
+                marginLeft: "0%",
               }}
               variant="contained"
-              type="submit"
-              onClick={(e) =>
-                alert(
-                  "Topic Note updated\nPress Topics to go back to the Topics list."
-                )
-              }
+              color="primary"
+              aria-label="contained primary button group"
             >
-              Save Update
-            </Button>
-            <Link to="/Topics">
               <Button
-                style={{
-                  marginLeft: "50px",
-                }}
                 variant="contained"
                 type="submit"
-                // onClick={(e) =>    alert("Topic Note updated\nPress Topics to go back to the Topics list.") }
+                onClick={(e) =>
+                  alert(
+                    "Topic Note updated\nPress Topics to go back to the Topics list."
+                  )
+                }
               >
-                Topics
+                Save Update
               </Button>
-            </Link>
+              <Link to="/Topics">
+                <Button variant="contained" type="submit">
+                  Topics
+                </Button>
+              </Link>
+            </ButtonGroup>
           </form>
         </div>
       </div>

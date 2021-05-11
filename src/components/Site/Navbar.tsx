@@ -1,29 +1,22 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import { Button, Toolbar, MenuItem, Theme } from "@material-ui/core";
+import { Button, MenuItem } from "@material-ui/core";
 import Home from "./Home";
 import Search from "./Search/Search";
-import Grid from "@material-ui/core/Grid";
 import MenuList from "@material-ui/core/MenuList";
 import Topics from "../Topics/Topics";
-import UpdateTopic from "../Topics/UpdateTopic"
-import Comment from "./Comments/Comment"
-import UpdateComment from "./Comments/UpdateComment"
-// import WebFont from 'webfontloader';
-
+import UpdateTopic from "../Topics/UpdateTopic";
+import Comment from "./Comments/Comment";
+import UpdateComment from "./Comments/UpdateComment";
 
 type acceptedProps = {
   sessionToken: string | null;
   clickLogout: () => void;
   topicId: number | null;
-  commentId: number | null
+  commentId: number | null;
   updateTopicId: (newTopicId: number) => void;
   updateCommentId: (newCommentId: number) => void;
-
-  // username: string | null | undefined;
 };
-
-
 
 export default class Navbar extends Component<acceptedProps, {}> {
   constructor(props: acceptedProps) {
@@ -32,59 +25,33 @@ export default class Navbar extends Component<acceptedProps, {}> {
     console.log(props);
   }
 
-  
   render() {
     return (
       <div>
         <div id="banner2">
-          {/* <h3>User Navbar!</h3> */}
           <h3
             id="title2"
             style={{
-              fontFamily: "Architects Daughter",
-              fontSize: "3.5rem",
+              fontFamily: "Rock Salt",
+              fontSize: "4rem",
               marginTop: "2%",
               marginLeft: "35%",
-              // marginRight: "auto",
               width: "500px",
               display: "block",
-              // backgroundColor: "#FFFFFF",
+              paddingBottom: "10px",
             }}
           >
             All Parts Welcome!
-            {/* {this.props.user} */}
           </h3>
         </div>
-        {/* <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-          <Button size="large" variant="contained" color="secondary">
-            <Link style={{ color: "#0b2966" }} to="/">
-              Home
-            </Link>
-          </Button>
-          <Button size="large" variant="contained" color="secondary">
-            <Link style={{ color: "#0b9877" }} to="/Favorites">
-              Favorites
-            </Link>
-          </Button>
-          <>
-            <Link style={{ color: "#0b9873" }} to="/Search">
-              Search
-            </Link>
-          </>
-        </Toolbar> */}
+
         <MenuList>
           <MenuItem component={Link} to="/Home">
             Home
           </MenuItem>
-          {/* <MenuItem component={Link} to="/Favorites">
-            Favorites
-          </MenuItem> */}
           <MenuItem component={Link} to="/Topics">
             Topics
           </MenuItem>
-          {/* <MenuItem component={Link} to="/UpdateTopic">
-            Update Topic
-          </MenuItem> */}
           <MenuItem component={Link} to="/Search">
             Search
           </MenuItem>
@@ -103,9 +70,7 @@ export default class Navbar extends Component<acceptedProps, {}> {
           <Route exact path="/Home">
             <Home sessionToken={this.props.sessionToken} />
           </Route>
-          {/* <Route exact path="/Favorites"> */}
-          {/* <Favorites sessionToken={this.props.sessionToken} /> */}
-          {/* </Route> */}
+
           <Route exact path="/Search">
             <Search sessionToken={this.props.sessionToken} />
           </Route>

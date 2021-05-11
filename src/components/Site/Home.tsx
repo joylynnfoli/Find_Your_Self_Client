@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
 import ViewPlaylist from "./ViewPlaylist"
 
 type homeProps = {
@@ -36,7 +35,6 @@ export default class Home extends Component<homeProps, acceptedState> {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        // example
         this.setState({ meditations: data.items });
         console.log(this.state.meditations);
       });
@@ -45,12 +43,7 @@ export default class Home extends Component<homeProps, acceptedState> {
   render() {
     return (
       <div>
-        {/* {this.state.playLists?.map((playList, index) => (
-          <div>
-            <img src={playList.snippet.thumbnails.medium.url} key={index} />
-            <p key={index}> {playList.snippet.title} </p>
-          </div>
-        ))} */}
+        
         <ViewPlaylist
           sessionToken={this.props.sessionToken}
           meditations={this.state.meditations}
