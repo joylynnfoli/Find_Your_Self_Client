@@ -1,14 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 .App {
   text-align: center;
 }
 
+
 body {
   font-family: "Julius Sans One", sans-serif;
+  font-family: 'Architects Daughter', cursive;
+  font-family: 'Homemade Apple', cursive;
+  font-family: 'Permanent Marker', cursive;
+  font-family: 'Poiret One', cursive;
+  font-family: 'Rock Salt', cursive;
+  font-family: 'Satisfy', cursive;
+  font-family: 'Shadows Into Light', cursive;
   /* color: red; */
   width: 100%;
   margin: 0;
-  background-color: #f4f5f7;
+  background-color: #f4f5f7 ;
   /* background-color: #921212 important!; */
   background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
+
+}
   
+#title2 {
+   font-family: "Architects Daughter";
+   font-size: "24 rem";
+   background-color: "#f4f5f7";
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png");
+  }
+  
+#Title1 {
+  color: red;
+  font-family: "Architects Daughter"; 
 }

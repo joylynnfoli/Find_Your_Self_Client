@@ -47,16 +47,15 @@ Remove the margin in all browsers.
 */
 
 body {
-  margin: 0;
-}
-
-/**
-Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
-*/
-
-body {
-  font-family:
-		system-ui,
+  font-family: "Julius Sans One", sans-serif;
+  font-family: 'Architects Daughter', cursive;
+font-family: 'Homemade Apple', cursive;
+font-family: 'Permanent Marker', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Rock Salt', cursive;
+font-family: 'Satisfy', cursive;
+font-family: 'Shadows Into Light', cursive;
+	system-ui,
 		-apple-system, /* Firefox supports this but not yet `system-ui` */
 		'Segoe UI',
 		Roboto,
@@ -65,7 +64,26 @@ body {
 		sans-serif,
 		'Apple Color Emoji',
 		'Segoe UI Emoji';
+  margin: 0;
 }
+
+/**
+Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+*/
+
+/* body {
+.font-link {
+   font-family: 'Hanalei Fill', cursive;
+    'Architects Daughter', cursive;
+ 'Homemade Apple', cursive;
+font-family: 'Permanent Marker', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Rock Salt', cursive;
+font-family: 'Satisfy', cursive;
+font-family: 'Shadows Into Light', cursive;
+ } */
+
+  
 
 /*
 Grouping content
@@ -288,6 +306,7 @@ Remove the inner padding in Chrome and Safari on macOS.
   font: inherit; /* 2 */
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 /*
 Interactive
 ===========

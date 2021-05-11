@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Link } from "react-router-dom";
 import APIURL from "../../helpers/environment";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { Button } from "@material-ui/core";
+import { Button, ButtonGroup } from "@material-ui/core";
 import { FormControl, Input, InputLabel } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import {
@@ -144,7 +144,11 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
           <TableCell align="right">{data.note}</TableCell>
          
           <TableCell align="right">
-            <Button
+          <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+            <Button 
+            
+                // marginLeft: "50px"}}
+
               size="small"
               variant="contained"
               onClick={(e) => {
@@ -155,7 +159,9 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
               Delete
             </Button>
             <Link to="/UpdateTopic">
-              <Button
+              <Button 
+              // style={{
+                // marginLeft: "50px"}}
                 size="small"
                 variant="contained"
                 onClick={(e) => {
@@ -164,10 +170,12 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
                 }}
               >
                 Update
-              </Button>
+              </Button >
             </Link>
             <Link to="/Comment">
-              <Button
+              <Button 
+              // style={{
+                // marginLeft: "50px"}}
                 size="small"
                 variant="contained"
                 onClick={(e) => {
@@ -178,6 +186,7 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
                 Comment
               </Button>
             </Link>
+              </ButtonGroup>
            
           </TableCell>
           
@@ -221,13 +230,17 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
               rowsMax={2}
             />
             <br />
+             <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
             <Button  
+
           variant="contained" type="submit">
               Add
             </Button>
-            <Button variant="contained" onClick={this.fetchAllTopics}>
-              Get
+            <Button 
+ variant="contained" onClick={this.fetchAllTopics}>
+              Get All Topics
             </Button>
+            </ButtonGroup>
           </form>
         </div>
         <div>

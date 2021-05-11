@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
-import { Button, Toolbar, MenuItem } from "@material-ui/core";
+import { Button, Toolbar, MenuItem, Theme } from "@material-ui/core";
 import Home from "./Home";
 import Search from "./Search/Search";
 import Grid from "@material-ui/core/Grid";
@@ -9,15 +9,21 @@ import Topics from "../Topics/Topics";
 import UpdateTopic from "../Topics/UpdateTopic"
 import Comment from "./Comments/Comment"
 import UpdateComment from "./Comments/UpdateComment"
+// import WebFont from 'webfontloader';
+
 
 type acceptedProps = {
   sessionToken: string | null;
   clickLogout: () => void;
   topicId: number | null;
+  commentId: number | null
   updateTopicId: (newTopicId: number) => void;
   updateCommentId: (newCommentId: number) => void;
+
   // username: string | null | undefined;
 };
+
+
 
 export default class Navbar extends Component<acceptedProps, {}> {
   constructor(props: acceptedProps) {
@@ -31,8 +37,10 @@ export default class Navbar extends Component<acceptedProps, {}> {
     return (
       <div>
         {/* <h3>User Navbar!</h3> */}
-        <h3
+        <h3 id="title2"
           style={{
+            fontFamily: 'Architects Daughter',
+            fontSize: "4rem",
             marginTop: "2%",
             marginLeft: "35%",
             // marginRight: "auto",
@@ -66,9 +74,9 @@ export default class Navbar extends Component<acceptedProps, {}> {
           <MenuItem component={Link} to="/Home">
             Home
           </MenuItem>
-          <MenuItem component={Link} to="/Favorites">
+          {/* <MenuItem component={Link} to="/Favorites">
             Favorites
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem component={Link} to="/Topics">
             Topics
           </MenuItem>
@@ -93,9 +101,9 @@ export default class Navbar extends Component<acceptedProps, {}> {
           <Route exact path="/Home">
             <Home sessionToken={this.props.sessionToken} />
           </Route>
-          <Route exact path="/Favorites">
+          {/* <Route exact path="/Favorites"> */}
             {/* <Favorites sessionToken={this.props.sessionToken} /> */}
-          </Route>
+          {/* </Route> */}
           <Route exact path="/Search">
             <Search sessionToken={this.props.sessionToken} />
           </Route>
@@ -117,6 +125,7 @@ export default class Navbar extends Component<acceptedProps, {}> {
             <Comment
               sessionToken={this.props.sessionToken}
               topicId={this.props.topicId}
+              commentId={this.props.commentId}
               updateCommentId={this.props.updateCommentId}
             />
           </Route>

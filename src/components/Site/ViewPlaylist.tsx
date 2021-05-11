@@ -12,7 +12,7 @@ import { Card,
 
 type acceptedProp = {
   sessionToken: string | null;
-  meditations: [];
+  meditations: any[];
 };
 
 export default class acceptedProps extends Component<acceptedProp, {}> {
