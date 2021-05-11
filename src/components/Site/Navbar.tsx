@@ -36,23 +36,25 @@ export default class Navbar extends Component<acceptedProps, {}> {
   render() {
     return (
       <div>
-        {/* <h3>User Navbar!</h3> */}
-        <h3 id="title2"
-          style={{
-            fontFamily: 'Architects Daughter',
-            fontSize: "4rem",
-            marginTop: "2%",
-            marginLeft: "35%",
-            // marginRight: "auto",
-            width: "500px",
-            display: "block",
-            // backgroundColor: "#FFFFFF",
-          }}
-        >
-          All Parts Welcome!
-          {/* {this.props.user} */}
-        </h3>
-
+        <div id="banner2">
+          {/* <h3>User Navbar!</h3> */}
+          <h3
+            id="title2"
+            style={{
+              fontFamily: "Architects Daughter",
+              fontSize: "3.5rem",
+              marginTop: "2%",
+              marginLeft: "35%",
+              // marginRight: "auto",
+              width: "500px",
+              display: "block",
+              // backgroundColor: "#FFFFFF",
+            }}
+          >
+            All Parts Welcome!
+            {/* {this.props.user} */}
+          </h3>
+        </div>
         {/* <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <Button size="large" variant="contained" color="secondary">
             <Link style={{ color: "#0b2966" }} to="/">
@@ -89,7 +91,7 @@ export default class Navbar extends Component<acceptedProps, {}> {
           <Button
             size="large"
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={this.props.clickLogout}
           >
             <Link style={{ color: "#000000" }} to="/home">
@@ -102,7 +104,7 @@ export default class Navbar extends Component<acceptedProps, {}> {
             <Home sessionToken={this.props.sessionToken} />
           </Route>
           {/* <Route exact path="/Favorites"> */}
-            {/* <Favorites sessionToken={this.props.sessionToken} /> */}
+          {/* <Favorites sessionToken={this.props.sessionToken} /> */}
           {/* </Route> */}
           <Route exact path="/Search">
             <Search sessionToken={this.props.sessionToken} />

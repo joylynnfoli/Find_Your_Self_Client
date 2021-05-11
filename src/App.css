@@ -1,10 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Homemade+Apple&family=Permanent+Marker&family=Rock+Salt&family=Shadows+Into+Light&display=swap');
+
 .App {
   text-align: center;
 }
 
+h2{
+  text-align: "center";
+  font-Family: "Architects Daughter"
+}
 
 body {
+  
+  font-family: 'Julius Sans One', sans-serif;
+  width: 100%;
+  /* margin-left: 20rem; */
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png");
+
   font-family: "Julius Sans One", sans-serif;
   font-family: 'Architects Daughter', cursive;
   font-family: 'Homemade Apple', cursive;
@@ -15,21 +27,74 @@ body {
   font-family: 'Shadows Into Light', cursive;
   /* color: red; */
   width: 100%;
-  margin: 0;
-  background-color: #f4f5f7 ;
-  /* background-color: #921212 important!; */
-  background-image: url("https://www.transparenttextures.com/patterns/back-pattern.png");
-
+  /* margin: 0; */
+  /* background-color: #fefff7;
+background-image: url("https://www.transparenttextures.com/patterns/corrugation.png"); */
+background-color: #f7fffe;
+background-image: url("https://www.transparenttextures.com/patterns/light-sketch.png");
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
   
+h1{
+  font-family: 'Shadows Into Light', cursive;
+}
+
 #title2 {
+  margin-top: "0px";
    font-family: "Architects Daughter";
-   font-size: "24 rem";
+   font-size: 10rem;
+   font-weight:bolder;
+   text-shadow: #000 0px 0px 6px;
+   padding-top: "60px";
    background-color: "#f4f5f7";
-  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png");
+   position: absolute;
+ color: rgb(232, 236, 240);
+  /* background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png"); */
   }
   
 #Title1 {
-  color: red;
-  font-family: "Architects Daughter"; 
+  color: rgb(249, 255, 250);
+  font-family: 'Permanent Marker', cursive;
+  font-size: 8rem;
+  /* font-weight: 100;
+  text-shadow: black;
+  text-decoration: black; */
+  color: rgb(247, 247, 240);
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  /* outline: black;
+  border-width: 30px;
+  border-color: black; */
+  margin-left: 15rem;
+  padding-top: 1rem;
+
+}
+
+#banner{
+  background-image: url("../src/auth/Assets/stones-167089_1920.jpg");
+  width: 100vw;
+    max-width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 40% 20%;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+#banner2{
+  background-image: url("../src/auth/Assets/dandelion-445228_1920.jpg");
+  width: 100vw;
+    max-width: 100%;
+    height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 40% 20%;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+
 }

@@ -23,13 +23,31 @@ export default class acceptedProps extends Component<acceptedProp, {}> {
   render() {
     return (
       <div>
-        <h1>Quick Meditations</h1>
+        <h1
+          style={{
+            textAlign: "center",
+            // fontWeight: "bold",
+            // marginLeft: "40%",
+            marginRight: "auto",
+            fontFamily: "Rock Salt",
+            fontSize: "larger",
+            fontWeight: "bold",
+            paddingTop: "2rem",
+
+            // marginLeft: "40%",
+            marginRight: "auto",
+            textAlign: "center",
+            // fontWeight: "Bolder",
+          }}
+        >
+          Quick Meditations
+        </h1>
         <CardDeck>
           {this.props.meditations.map((meditation, index) => {
             console.log(meditation);
             return (
               <Card
-                style={{ margin: "20px 20px 20px 50px", minWidth: "20%", maxWidth: "20%" }}
+                style={{ margin: "20px 20px 20px 50px", minWidth: "25%" }}
                 key={index}
               >
                 <CardImg
@@ -38,7 +56,7 @@ export default class acceptedProps extends Component<acceptedProp, {}> {
                 />
                 <CardBody>
                   <CardTitle>{meditation.snippet.title}</CardTitle>
-                
+
                   <Button
                     variant="primary"
                     href={

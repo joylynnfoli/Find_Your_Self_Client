@@ -5,7 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* font-family: 'Julius Sans One', sans-serif;
+  width: 100%;
+  margin: 0;
+  background-color: #25ce6c;
+  background-image: url("https://www.transparenttextures.com/patterns/concrete-wall.png"); */
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

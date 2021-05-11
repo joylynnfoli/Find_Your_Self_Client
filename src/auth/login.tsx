@@ -76,7 +76,16 @@ export default class Login extends Component<acceptedProps, userState> {
   render() {
     return (
       <div className="Login">
-        <h2 style={{ textAlign: "center", marginTop: "15%" }}>Login Here!</h2>
+        <h2
+          style={{
+            textAlign: "center",
+            marginTop: "15%",
+            fontFamily: "Shadows Into Light",
+            fontWeight: "Bolder"
+          }}
+        >
+          Login Here!
+        </h2>
         <form
           className="form"
           style={{

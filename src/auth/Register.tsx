@@ -66,7 +66,14 @@ export default class Register extends Component<acceptedProps, UserState> {
   render() {
     return (
       <div className="Register">
-        <h2 style={{ textAlign: "center", marginTop: "15%" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            marginTop: "15%",
+            fontFamily: "Shadows Into Light",
+            fontWeight: "Bolder",
+          }}
+        >
           Register Here!
         </h2>
         <form

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import APIURL from "../../../helpers/environment";
 import { Button } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
@@ -14,7 +14,6 @@ import {
   Paper,
 } from "@material-ui/core";
 
-
 type acceptedProps = {
   sessionToken: any | null;
   topicId: number | null;
@@ -25,12 +24,12 @@ type acceptedProps = {
 type acceptedState = {
   note: string;
   commentId: number | null;
-  comment: any[]
+  comment: any[];
 };
 
 const styles = {
   table: {
-    maxWidth: "80%" 
+    maxWidth: "80%",
   },
 };
 
@@ -43,7 +42,7 @@ export default class UpdateComment extends Component<
     this.state = {
       note: "",
       commentId: 0,
-      comment: []
+      comment: [],
     };
   }
   componentDidMount() {
@@ -72,21 +71,21 @@ export default class UpdateComment extends Component<
   addComment = (e: any) => {
     e.preventDefault();
     fetch(`${APIURL}/comment/add/${this.props.topicId}`, {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: this.props.sessionToken,
-          accept: "application/json",
-        }),
-        body: JSON.stringify({
-            note: this.state.note,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          this.fetchComments();
-          });
-  }
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: this.props.sessionToken,
+        accept: "application/json",
+      }),
+      body: JSON.stringify({
+        note: this.state.note,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        this.fetchComments();
+      });
+  };
 
   handleDelete = (id: number | null) => {
     console.log("handleDelete called");
@@ -105,12 +104,12 @@ export default class UpdateComment extends Component<
           Authorization: this.props.sessionToken,
           accept: "application/json",
         }),
-              })
+      })
         .then((res) => res.json())
         .then((data) => {
           // this.fetchComments();
           //  console.log(`update,${this.state.topicId}`);
-          console.log(this.state.commentId)
+          console.log(this.state.commentId);
         });
     }
   };
@@ -143,74 +142,94 @@ export default class UpdateComment extends Component<
                 Update
               </Button>
             </Link>
-           
           </TableCell>
         </TableRow>
       );
     });
   };
- render() {
+  render() {
     return (
       <>
-      <div>
-        <h1>Comment</h1>
-        <form
-          style={{
-            marginLeft: "auto",
-            marginRight: "none",
-            width: "85%",
-            display: "block",
-          }}
-          onSubmit={this.addComment}
-        >
-          <TextField
-            onChange={(e) => this.setState({ note: e.target.value })}
-            id="note"
-            label="Comment on Playlist"
-          />
-          <br />
-          <br />
-          <Button 
+        <div>
+          <h2
             style={{
-              marginLeft: "15px"}}variant="contained" type="submit">
-            Add
-          </Button>
-          <Button variant="contained" onClick={this.fetchComments}>
-            Get
-          </Button>
-          <Link to="/Topics">
-          <Button variant="contained" onClick={this.fetchComments}>
-            Return to Topics
-          </Button>
-          </Link>
-        </form>
+              textAlign: "left",
+              // fontWeight: "bold",
+              marginLeft: "15%",
+              marginRight: "auto",
+              fontFamily: "Rock Salt",
+              fontSize: "medium",
+            }} >Add Comment</h2>
+          <form
+            style={{
+              marginLeft: "auto",
+              marginRight: "none",
+              width: "85%",
+              display: "block",
+            }}
+            onSubmit={this.addComment}
+          >
+            <TextField
+              onChange={(e) => this.setState({ note: e.target.value })}
+              id="note"
+              label="Comment on Playlist"
+            />
+            <br />
+            <br />
+            <Button
+              style={{
+                marginLeft: "15px",
+              }}
+              variant="contained"
+              type="submit"
+            >
+              Add
+            </Button>
+            <Button variant="contained" onClick={this.fetchComments}>
+              Get
+            </Button>
+            <Link to="/Topics">
+              <Button variant="contained" onClick={this.fetchComments}>
+                Return to Topics
+              </Button>
+            </Link>
+          </form>
         </div>
-          <div>
-            <h3
-              style={{
-                marginLeft: "40%",
-                marginRight: "auto",
-              }}
-            >
-              Comments Table
-            </h3>
-            <TableContainer
-              component={Paper}
-              style={{
-                marginLeft: "10%",
-              }}
-            >
-              <Table style={styles.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell align="center">Comment</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>{this.commentMapper()}</TableBody>
-              </Table>
-            </TableContainer>
-          </div>
-      
+        <div>
+          <h4
+             style={{
+               
+              textAlign: "center",
+              // fontWeight: "bold",
+              // marginLeft: "40%",
+              marginRight: "auto",
+              fontFamily: "Rock Salt",
+              fontSize: "medium",
+              fontWeight: "bold",
+              paddingTop: "2rem",
+            
+              // marginLeft: "40%",
+              marginRight: "auto",
+            }}
+          >
+            Comments Table
+          </h4>
+          <TableContainer
+            component={Paper}
+            style={{
+              // marginLeft: "10%",
+            }}
+          >
+            <Table style={styles.table} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Comment</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>{this.commentMapper()}</TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </>
     );
   }

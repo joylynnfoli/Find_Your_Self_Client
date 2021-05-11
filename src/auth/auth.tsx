@@ -5,6 +5,7 @@ import Register from "./Register";
 // import backgroundImage from "./Assets/"
 import Grid from "@material-ui/core/Grid";
 import styled from 'styled-components'
+import Pic from './Assets/Pic'
 import ImageCenterFocusStrong from "material-ui/svg-icons/image/center-focus-strong";
 // import "../auth/"
 
@@ -48,20 +49,26 @@ export default class Auth extends Component<acceptedProps, userState> {
 
   render() {
     return (
-       <div>
-         <Jumbotron>
-           <div className="bg-gray-900 min-hscreen flex items-center justify center"></div>
-          
+      <div>
+        <div id="banner">
+          {/* <Jumbotron> */}
+          {/* <div
+            className="flex items-center justify center"
+            style={{
+              backgroundImage: `url("https://pixabay.com/photos/tree-flowers-meadow-tree-trunk-276014/")`,
+            }}
+          ></div> */}
 
-           <h1 id="Title1">Find Your Self</h1>
-         {/* <div className="Banner" 
+          <h1 id="Title1">Find Your Self</h1>
+          {/* <div className="Banner" 
          style={{
           backgroundImage: `url("https://images.unsplash.com/photo-1511448598600-c01f02a2ee95?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80")`, 
           width: 100%
           backgroundSize: 100%
            }}>
             </div>  */}
-            </Jumbotron>
+          {/* </Jumbotron> */}
+        </div>
         <div id="container">
           {this.state.showLogin ? (
             <div>
@@ -76,14 +83,15 @@ export default class Auth extends Component<acceptedProps, userState> {
             </div>
           )}
           <br />
-          <Button style={{
-            position: "relative",
-            left: "50%",
-            top: "75%",
-            // transform: "translate(-50%, -75%)",
-            marginBottom: "20px",
-            padding: "20px, 50px, 20px"
-          }}
+          <Button
+            style={{
+              position: "relative",
+              left: "50%",
+              top: "75%",
+              // transform: "translate(-50%, -75%)",
+              marginBottom: "20px",
+              padding: "20px, 50px, 20px",
+            }}
             variant="contained"
             onClick={(e) => {
               this.loginToggle(e);
@@ -94,6 +102,8 @@ export default class Auth extends Component<acceptedProps, userState> {
         </div>
         <p
           style={{
+            fontFamily: "Architects Daughter",
+            fontSize: "24px",
             position: "relative",
             // left: "10%",
             // marginRight: "20px",
@@ -102,11 +112,20 @@ export default class Auth extends Component<acceptedProps, userState> {
             // transform: "translate(-50%, -75%)",
             marginBottom: "20px",
             // padding: "20px, 20px, 20px",
-            maxWidth: "600px",
-            marginLeft: "30%",
+            maxWidth: "700px",
+            marginLeft: "25%",
           }}
         >
-          Find Your Self has curated collections of Internal Family Systems videos to be utilized  for Pracitioners/Therapists needing addtional training or layperson that is wanting to work on their own self therapy or between sessions with their IFS Practioner.  Get unique insights from Richard Schwartz, creator of the IFS model, on how best to handle Protectors(manager/firefighters) and exiles, see session demonstrations and learn the IFS modality in greater depth. You will also find a unique collection of videos from the Internal Family Systems Institute along with other leaders in the field of IFS.  All Parts Welcome!  
+          Find Your Self has curated collections of Internal Family Systems
+          videos to be utilized for Pracitioners/Therapists wanting additional
+          training or any layperson interested in self
+          therapy or continued work between sessions with their IFS Practioner. Get unique
+          insights from Richard Schwartz, creator of the IFS model, on how best
+          to handle Protectors (managers/firefighters) and exiles, see session
+          demonstrations and learn the IFS modality in greater depth. You will
+          also find a unique collection of videos from the Internal Family
+          Systems Institute along with other leaders in the field of IFS. All
+          Parts Welcome!
         </p>
       </div>
     );

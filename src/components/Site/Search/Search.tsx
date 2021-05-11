@@ -115,10 +115,42 @@ export default class Search extends Component<searchProps, acceptedCategories> {
           >
             Richard Schwartz Podcasts
           </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekIMz2mAmvg2oH_jkujPRcby&maxResults=50`}
+          >
+            IFS for Couples
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekLnZdmvRKfWAmEuIHez5si5&maxResults=50`}
+          >
+            Ketamine Assisted Therapy
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekLu37mC2R66e0Sv_1qBgFsY&maxResults=50
+`}
+          >
+            Working with Shame
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekL7G02E_t78idz7UBhOQD89&maxResults=50`}
+          >
+            Intro to IFS
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekId4TrieIUNeeLgqxpHYmNO&maxResults=50`}
+          >
+            Jay Earley
+          </MenuItem>
+          <MenuItem
+            value={`https://www.googleapis.com/youtube/v3/playlistItems?key=AIzaSyBq1DNOq8c_YP9sqDKEYt_iJUD5XFdLLzI&part=snippet&playlistId=PLvcW4S4nxekK0BxXf-TagMIXukf0NYBKA&maxResults=50`}
+          >
+            Addiction
+          </MenuItem>
         </Select>
-        <Button style={{
-              minWidth: "20%"
-            }}
+        <Button
+          style={{
+            minWidth: "20%",
+          }}
           variant="contained"
           // color="red"
           onClick={() => {

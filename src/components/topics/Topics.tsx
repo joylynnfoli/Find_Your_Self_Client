@@ -200,7 +200,18 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
     return (
       <>
         <div>
-          <h2 style={{ textAlign: "center" }}>Add Topic</h2>
+          <h2
+            style={{
+              paddingTop: "1rem",
+              textAlign: "left",
+              fontFamily: "Rock Salt",
+              fontSize: "medium",
+              marginLeft: "15%",
+              marginRight: "auto",
+            }}
+          >
+            Add Topic
+          </h2>
           <form
             style={{
               marginLeft: "auto",
@@ -230,54 +241,59 @@ export default class Topics extends Component<acceptedProps, acceptedState> {
               rowsMax={2}
             />
             <br />
-             <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-            <Button  
-
-          variant="contained" type="submit">
-              Add
-            </Button>
-            <Button 
- variant="contained" onClick={this.fetchAllTopics}>
-              Get All Topics
-            </Button>
+            <ButtonGroup
+              variant="contained"
+              color="primary"
+              aria-label="contained primary button group"
+            >
+              <Button variant="contained" type="submit">
+                Add
+              </Button>
+              <Button variant="contained" onClick={this.fetchAllTopics}>
+                Get All Topics
+              </Button>
             </ButtonGroup>
           </form>
         </div>
         <div>
-          <h3
-            style={
-              {
-                marginLeft: "40%",
-                marginRight: "auto",
-              }
-            }
+          <h2
+            style={{
+              textAlign: "center",
+              // fontWeight: "bold",
+              // marginLeft: "40%",
+              marginRight: "auto",
+              fontFamily: "Rock Salt",
+              fontSize: "large",
+              fontWeight: "bold",
+              paddingTop: "2rem",
+
+              // marginLeft: "40%",
+              marginRight: "auto",
+            }}
           >
             Topics Table
-          </h3>
+          </h2>
           <TableContainer
             component={Paper}
-            style={{
-              
-              marginLeft: "10%",
-              
-            }}
+            style={
+              {
+                // marginLeft: "10%",
+                // marginRight:"10"
+              }
+            }
           >
             <Table style={styles.table} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell align="right">Playlist</TableCell>
                   <TableCell align="right">Title</TableCell>
-               
+
                   <TableCell align="right">Comment</TableCell>
-               
                 </TableRow>
               </TableHead>
               <TableBody>{this.topicMapper()}</TableBody>
-            
             </Table>
           </TableContainer>
-
-          
         </div>
       </>
     );

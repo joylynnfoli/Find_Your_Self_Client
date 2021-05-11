@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Site/Home";
+// import Home from "./components/Site/Home";
 import Navbar from "./components/Site/Navbar";
 import Auth from "./auth/Auth";
 
@@ -71,6 +71,7 @@ export default class App extends Component<{}, sessionState> {
             sessionToken={this.state.sessionToken}
             clickLogout={this.clearToken}
             topicId={this.state.topicId}
+            commentId={this.state.commentId}
             updateTopicId={this.updateTopicId}
             updateCommentId={this.updateCommentId}
           />
