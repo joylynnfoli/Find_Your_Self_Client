@@ -4,9 +4,24 @@
   text-align: center;
 }
 
+#Login{
+  position: absolute;
+  margin-left: 20%;
+  margin: 0px;
+  padding: 0;
+}
+
+#Register
+{
+  position: absolute;
+  margin-left: 120px;
+  margin-top: 20px;
+}
+
 h2 {
   text-align: "center";
   font-family: "Architects Daughter";
+  margin-left: 0px;
 }
 
 body {
@@ -28,7 +43,7 @@ h1 {
 #title2 {
   text-shadow: #000 0px 0px 9px;
   position: absolute;
-  color: rgb(232, 236, 240);
+  color: rgb(245, 246, 247);
 }
 
 #Title1 {

@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import APIURL from "../helpers/environment";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
-import { Button } from "@material-ui/core";
-import { FormControl, Input, InputLabel } from "@material-ui/core";
+import { Button, MenuItem } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
-import { Grid, Paper } from "@material-ui/core";
-import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 
 type acceptedProps = {
@@ -33,7 +29,7 @@ export default class Register extends Component<acceptedProps, UserState> {
   };
   handleSubmit = (e: any) => {
     e.preventDefault();
-    fetch("http://localhost:3000/user/signup", {
+    fetch(`${APIURL}/user/signup`, {
       method: "POST",
       body: JSON.stringify({
         email: this.state.email,
@@ -54,13 +50,11 @@ export default class Register extends Component<acceptedProps, UserState> {
   
   render() {
     return (
-      <div className="Register">
+      <div id="Register">
         <h2
           style={{
-            textAlign: "center",
             marginTop: "15%",
             fontFamily: "Shadows Into Light",
-            fontWeight: "Bolder",
           }}
         >
           Register Here!
@@ -71,7 +65,6 @@ export default class Register extends Component<acceptedProps, UserState> {
             marginRight: "auto",
             width: "300px",
             display: "block",
-            // backgroundColor: "#FFFFFF",
           }}
           onSubmit={this.handleSubmit}
         >
@@ -98,15 +91,20 @@ export default class Register extends Component<acceptedProps, UserState> {
           />
           <br />
           <Select onChange={this.handleChangeRole}>
-            {/* id="role"
-            label="Role"
-            required
-            title="Please enter "
-            // type="text" */}
             <MenuItem value="Therapist">Therapist/Practitioner</MenuItem>
             <MenuItem value="Client">Client</MenuItem>
           </Select>
-          <Button variant="contained" type="submit">
+          <Button
+            style={{
+              position: "absolute",
+              marginLeft: "5%",
+              // marginRight: "auto",
+              // width: "300px",
+              // display: "block",
+            }}
+            variant="contained"
+            type="submit"
+          >
             Sign Up
           </Button>
         </form>

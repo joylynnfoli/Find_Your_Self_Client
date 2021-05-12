@@ -38,7 +38,7 @@ export default class acceptedProps extends Component<acceptedProp, {}> {
             console.log(meditation);
             return (
               <Card
-                style={{ margin: "20px 20px 20px 50px", minWidth: "30%" }}
+                style={{ margin: "20px 20px 20px 50px", minWidth: "25%" }}
                 key={index}
               >
                 <CardImg

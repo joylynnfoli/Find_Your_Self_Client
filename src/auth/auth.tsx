@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Jumbotron, Button, Carousel } from "reactstrap";
+import { Button, GroupButton } from "reactstrap";
 import Login from "./Login";
 import Register from "./Register";
 
@@ -53,6 +53,7 @@ export default class Auth extends Component<acceptedProps, userState> {
             </div>
           )}
           <br />
+          
           <Button
             style={{
               position: "relative",
@@ -77,13 +78,12 @@ export default class Auth extends Component<acceptedProps, userState> {
             top: "75%",
             marginBottom: "20px",
             maxWidth: "700px",
-            marginLeft: "25%",
+            marginLeft: "30%",
           }}
         >
           Find Your Self has curated collections of Internal Family Systems
           videos to be utilized for Pracitioners/Therapists wanting additional
-          training or any layperson interested in self therapy or continued work
-          between sessions with their IFS Practioner. Get unique insights from
+          training or information.  This is also available to any layperson interested in self therapy or continued work between sessions with their IFS Practioner. Get unique insights from
           Richard Schwartz, creator of the IFS model, on how best to handle
           Protectors (managers/firefighters) and exiles, see session
           demonstrations and learn the IFS modality in greater depth. You will
